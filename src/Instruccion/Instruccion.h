@@ -14,12 +14,108 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_H
 #define C_Instruccion_H
+#include <string>
+#include "../Escritura/Escritura.h"
+
+using namespace std;
+
+/**
+ * @class Clase para representar una instrucción
+*/
 
 class Instruccion {
  public:
-  Instruccion();
- private:
- 
+  Instruccion() {}
+
+  // Método para ejecutar la instrucción
+  virtual void ejecutar(string& operando) = 0;
+
+  // Getters 
+  inline string GetInstruccion() { return instruccion_; } // Obtener el nombre de la instrucción
+
+ protected:
+  string instruccion_;
 };
+
+/**
+ * @class Clase para representar la instrucción LOAD
+*/
+
+class Instruccion_LOAD : public Instruccion {
+ public:
+  Instruccion_LOAD() { instruccion_ = "LOAD"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción STORE
+*/
+
+class Instruccion_STORE : public Instruccion {
+ public:
+  Instruccion_STORE() { instruccion_ = "STORE"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción ADD
+*/
+
+class Instruccion_ADD : public Instruccion {
+ public:
+  Instruccion_ADD() { instruccion_ = "ADD"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción SUB
+*/
+
+class Instruccion_SUB : public Instruccion {
+ public:
+  Instruccion_SUB() { instruccion_ = "SUB"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción MUL
+*/
+
+class Instruccion_MUL : public Instruccion {
+ public:
+  Instruccion_MUL() { instruccion_ = "MUL"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción DIV
+*/
+
+class Instruccion_DIV : public Instruccion {
+ public:
+  Instruccion_DIV() { instruccion_ = "DIV"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción READ
+*/
+
+class Instruccion_READ : public Instruccion {
+ public:
+  Instruccion_READ() { instruccion_ = "READ"; }
+
+  void ejecutar(const Escritura& cinta_escritura) {};
+};
+
+
+
+
 
 #endif
