@@ -14,12 +14,26 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_Lectura_H
 #define C_Lectura_H
+#include <vector>
+#include <string>
+#include <fstream>
+#include <iostream>
 
+using namespace std;
+
+vector<int> fichero_to_vector(string fichero);
+
+/** Clase Lectura
+  * @brief Clase que se encarga de leer los elementos de entrada.
+  */
 class Lectura {
  public:
-  Lectura();
+  Lectura(vector<int> fichero_de_lectura);
+  int leer();
  private:
- 
+  vector<int> fichero_de_lectura_;
+  int pos_lectura_;
 };
+
 
 #endif
