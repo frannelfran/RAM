@@ -14,12 +14,23 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_Escritura_H
 #define C_Escritura_H
+#include <vector>
+#include <fstream>
+
+using namespace std;
+
+/**
+ * @class Clase para representar el conjunto de escritura
+*/
 
 class Escritura {
  public:
-  Escritura();
+  Escritura() {}
+
+  void VolcarEnFichero(ofstream& file);
+
  private:
- 
+ vector<int> cinta_escritura;
 };
 
 #endif
