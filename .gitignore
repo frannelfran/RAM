@@ -1,2 +1,4 @@
-# Hago que no se suban los archivos ejecutables
+# Hago que no se suban los archivos ejecutables ni los ficheros de entrada y de salida.
 *Máquina_RAM
+data/entrada.txt
+data/salida.txt
