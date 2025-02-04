@@ -14,12 +14,23 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_MemoriaDatos_H
 #define C_MemoriaDatos_H
+#include <vector>
+
+using namespace std;
+
+/**
+ * @class Clase para representar el conjunto de registros
+*/
 
 class MemoriaDatos {
  public:
   MemoriaDatos();
+
+  inline void SetDato(int posicion, int dato);
+  inline int GetDato(int posicion);
+
  private:
- 
+  vector<int> registros_;
 };
 
 #endif

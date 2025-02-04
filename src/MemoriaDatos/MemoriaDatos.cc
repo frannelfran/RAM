@@ -15,11 +15,25 @@
 
 #include"MemoriaDatos.h"
 
-/** MemoriaDatos::MemoriaDatos()
-  * @brief Crea el objeto de la clase MemoriaDatos.
-  * @param 
-  * @return objeto de la clase MemoriaDatos
-  */
-MemoriaDatos::MemoriaDatos() {
+/**
+ * @brief Función para obtener dato almacenado en un registro
+ * @param pos Posición del registro
+ * @return Dato almacenado en ese registro
+*/
 
+int MemoriaDatos::GetDato(int pos) {
+  return registros_[pos];
+}
+
+/**
+ * @brief Función para guardar un dato en un registro
+ * @param pos Posición del registro
+ * @param dato Dato a almacenar
+*/
+
+void MemoriaDatos::SetDato(int pos, int dato) {
+  if (pos >= registros_.size()) {
+    registros_.resize(pos + 1);
+  }
+  registros_[pos] = dato;
 }
