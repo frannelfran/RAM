@@ -12,6 +12,7 @@
 //
 // Historial de revisiones
 //        02/04/25 - Creación (primera versión) del código
+//        02/04/25 - Implementación de la función fichero_to_vector y del constructor de la clase Lectura
 
 #include"Lectura.h"
 
@@ -48,10 +49,6 @@ vector<int> fichero_to_vector(string fichero) {
   */
 Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_de_lectura) {
   int pos_lectura_= 0;
-  // muestro el vector (debug)
-  for (long unsigned int i = 0; i < fichero_de_lectura_.size(); i++) {
-    cout << fichero_de_lectura[i] << " ";
-  }
 }
 
 
