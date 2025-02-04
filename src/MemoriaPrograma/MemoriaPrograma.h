@@ -14,12 +14,26 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_MemoriaPrograma_H
 #define C_MemoriaPrograma_H
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <sstream>
+
+using namespace std;
+
+vector<string> fichero_to_line(string fichero);
 
 class MemoriaPrograma {
  public:
-  MemoriaPrograma();
+  MemoriaPrograma(vector<string> lineas_de_codigo);
+  pair<int,string> Leer_siguiente_instruccion();
+
  private:
- 
+  vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
+  map<string,int> etiqueta_a_dirección_; // relaciona las etiquetas con la dirección de la instrucción
+  int PC_;
 };
 
 #endif
