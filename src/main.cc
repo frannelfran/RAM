@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     //Creo el objeto de la clase Maquina
     //Ejecuto la máquina
   } catch (const exception& e) {
-    std::cerr << e.what() << std::endl;
+    cerr << e.what() << endl;
     return 1;
   }
 

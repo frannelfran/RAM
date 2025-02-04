@@ -21,14 +21,19 @@
 
 using namespace std;
 
+vector<int> fichero_to_vector(string fichero);
+
+/** Clase Lectura
+  * @brief Clase que se encarga de leer los elementos de entrada.
+  */
 class Lectura {
  public:
   Lectura(vector<int> fichero_de_lectura);
+  int leer();
  private:
   vector<int> fichero_de_lectura_;
   int pos_lectura_;
 };
 
-vector<int> fichero_to_vector(string fichero);
 
 #endif
