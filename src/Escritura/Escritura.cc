@@ -15,11 +15,14 @@
 
 #include"Escritura.h"
 
-/** Escritura::Escritura()
-  * @brief Crea el objeto de la clase Escritura.
-  * @param 
-  * @return objeto de la clase Escritura
-  */
-Escritura::Escritura() {
+/**
+ * @brief Función para volcar en el fichero de salida
+ * @param file Fichero de salida
+*/
 
+void Escritura::VolcarEnFichero(ofstream& file) {
+  // Recorro la cinta de escritura
+  for (int digito : cinta_escritura) {
+    file << digito;
+  }
 }
