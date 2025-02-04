@@ -4,7 +4,7 @@
 // Asignatura: DAA
 // Curso: 3º
 // Práctica 02 : Máquina_RAM
-// Autor: javier Gómez Alayón
+// Autor: javier Gómez Alayón, Franco Alla
 // Correo: alu0101562445@ull.edu.es
 // Fecha: 02/04/25
 // Archivo funciones_main.h: Declaración de las funciones del main
@@ -21,7 +21,9 @@
 
 struct Dato {
   bool correcto;
-  std::string fichero;
+  std::string ficheroEntrada;
+  std::string ficheroSalida;
+  std::string ficheroPrograma;
 };
 
 Dato recoger_parametro(int argc, char *argv[]);

@@ -4,7 +4,7 @@
 // Asignatura: DAA
 // Curso: 3º
 // Práctica 02 : Máquina_RAM
-// Autor: javier Gómez Alayón
+// Autor: javier Gómez Alayón, Franco Alla
 // Correo: alu0101562445@ull.edu.es
 // Fecha: 02/04/25
 // Archivo Lectura.h : Declaración de la clase Lectura

@@ -4,7 +4,7 @@
 // Asignatura: DAA
 // Curso: 3º
 // Práctica 02 : Máquina_RAM
-// Autor: javier Gómez Alayón
+// Autor: javier Gómez Alayón, Franco Alla
 // Correo: alu0101562445@ull.edu.es
 // Fecha: 02/04/25
 // Archivo funciones_main.cc: Implementación de las funciones del main
@@ -35,9 +35,13 @@ Dato recoger_parametro(int numero_argumentos, char *argv[]) {
       if (argv[1] == kHelp || argv[1] == kH) {
         mostrar_ayuda();
         datos.correcto = true;
-      } else {
-        datos.fichero = argv[1];
       }
+      return datos;
+    case 4:
+      datos.ficheroEntrada = argv[1];
+      datos.ficheroSalida = argv[2];
+      datos.ficheroPrograma = argv[3];
+      datos.correcto = true;
       return datos;
     default:
       datos.correcto = false;
@@ -48,24 +52,27 @@ Dato recoger_parametro(int numero_argumentos, char *argv[]) {
  * @brief Muestra una ayuda detallada del programa
  */
 void mostrar_ayuda() {
-  std::cout << "\nEste programa se encarga de realizar " << std::endl;
-  std::cout << "El programa recibe como argumentos el nombre del fichero que contiene " << std::endl;
-  std::cout << "Usage: ./busqueda_no_informada fichero.txt " << std::endl;
+  std::cout << "\nEste programa se encarga de realizar una simulación de una máquina RAM en la que se ejecutarán distintos programas." << std::endl;
+  std::cout << "El programa recibe como argumentos los ficheros de entrada, de salida y el que contiene el programa a ejecutar." << std::endl;
+  std::cout << "Usage: ./Máquina_RAM <fichero de entrada>.txt <fichero de salida>.txt <fichero del programa a ejecutar>.ram" << std::endl;
 }
 
 /**
  * @brief Muestra una ayuda resumida del programa
  */
 void mostrar_ayuda_resumida() {
-  std::cout << "\nUsage: ./busqueda_no_informada fichero.txt" << std::endl;
+  std::cout << "\nUsage: ./Máquina_RAM <fichero de entrada>.txt <fichero de salida>.txt <fichero del programa a ejecutar>.ram" << std::endl;
   std::cout << "Usa el parámetro -h para más información" << std::endl;
 }
 
+/**
+ * @brief Muestra una ayuda del menú del programa
+ */
 void mostrar_ayuda_menu() {
   std::cout << "Introduce una de las siguientes opciones: " << std::endl;
   std::cout << "0. Salir" << std::endl;
   std::cout << "1. Mostrar ayuda" << std::endl;
-  std::cout << "2. indicar nodo inicial y nodo final" << std::endl;
+  std::cout << "2. Iniciar programa" << std::endl;
 }
 
 /**

@@ -4,7 +4,7 @@
 // Asignatura: DAA
 // Curso: 3º
 // Práctica 02 : Máquina_RAM
-// Autor: javier Gómez Alayón
+// Autor: javier Gómez Alayón, Franco Alla
 // Correo: alu0101562445@ull.edu.es
 // Fecha: 02/04/25
 // Archivo main.cc: Implementación del programa cliente
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   //Compruebo si se han introducido los argumentos necesarios
   Dato datos = recoger_parametro(argc, argv);
   if (datos.correcto == false) {
-    std::cerr << "Error no se han introducido los datos correctamente" << std::endl;
+    //std::cerr << "Error no se han introducido los datos correctamente" << std::endl;  // lo he comentado porque ya en la función recoger_parametro se imprime el error
     return 1;
   }
 
