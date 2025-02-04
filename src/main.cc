@@ -10,6 +10,8 @@
 // Archivo main.cc: Implementación del programa cliente
 //        En este fichero se implementa la función del main
 //
+// Usage: ./Máquina_RAM data/entrada.txt data/salida.txt data/test2.ram 
+//
 // Historial de revisiones
 //        02/04/25 - Creación (primera versión) del código
 #include"funciones_main/funciones_main.h"
