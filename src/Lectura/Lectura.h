@@ -14,12 +14,21 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_Lectura_H
 #define C_Lectura_H
+#include <vector>
+#include <string>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
 
 class Lectura {
  public:
-  Lectura();
+  Lectura(vector<int> fichero_de_lectura);
  private:
- 
+  vector<int> fichero_de_lectura_;
+  int pos_lectura_;
 };
+
+vector<int> fichero_to_vector(string fichero);
 
 #endif

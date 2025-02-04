@@ -15,11 +15,44 @@
 
 #include"Lectura.h"
 
+
+/** vector<int> fichero_to_vector(string fichero)
+  * @brief Convierte un fichero en un vector de enteros.
+  * @param string fichero
+  * @return vector<int> un vector con todos los enteros del fichero
+  * 
+  */
+vector<int> fichero_to_vector(string fichero) {
+  vector<int> vector_fichero;
+  ifstream archivo(fichero); 
+  if (archivo.is_open()) {
+    string elemento_leido;
+    while (archivo >> elemento_leido) { // mientras haya elementos en el fichero
+      try {
+        vector_fichero.push_back(stoi(elemento_leido)); // metemos la linea en el vector en forma de número
+      } catch (const invalid_argument& e) {
+        throw invalid_argument("Error: El fichero contiene algo que no es un número"); // si no es un número, lanzamos una excepción
+      }
+    }
+    archivo.close();
+  } else { // si no se ha podido abrir el fichero, lanzamos una excepción
+    throw ios_base::failure("Error: No se ha podido abrir el fichero"); 
+  }
+  return vector_fichero;
+}
+
 /** Lectura::Lectura()
   * @brief Crea el objeto de la clase Lectura.
-  * @param 
+  * @param vector<int> fichero_de_lectura
   * @return objeto de la clase Lectura
   */
-Lectura::Lectura() {
-
+Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_de_lectura) {
+  int pos_lectura_= 0;
+  // muestro el vector (debug)
+  for (long unsigned int i = 0; i < fichero_de_lectura_.size(); i++) {
+    cout << fichero_de_lectura[i] << " ";
+  }
 }
+
+
+
