@@ -59,7 +59,7 @@ class Instruccion_STORE : public Instruccion {
  public:
   Instruccion_STORE(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "STORE"; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**

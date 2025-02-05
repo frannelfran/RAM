@@ -17,9 +17,18 @@
 
 /**
  * @brief Método para ejecutar la instrucción LOAD
- * @param operando Operando de la instrucción
+ * @param operando Operando a guardar en RO
 */
 
 void Instruccion_LOAD::ejecutar(const string& operando) {
   registros_->SetDato(0, stoi(operando));
+}
+
+/**
+ * @brief Método para ejecutar la instrucción STORE
+ * @param operando Operando donde guardar el dato del registro RO
+*/
+
+void Instruccion_STORE::ejecutar(const string& operando) {
+  registros_->SetDato(stoi(operando), registros_->GetDato(0));
 }
