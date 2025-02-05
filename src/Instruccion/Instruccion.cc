@@ -32,3 +32,12 @@ void Instruccion_LOAD::ejecutar(const string& operando) {
 void Instruccion_STORE::ejecutar(const string& operando) {
   registros_->SetDato(stoi(operando), registros_->GetDato(0));
 }
+
+/**
+ * @brief Método para ejecutar la instrucción ADD
+ * @param operando Operando a sumar al registro RO
+*/
+
+void Instruccion_ADD::ejecutar(const string& operando) {
+  registros_->SetDato(0, registros_->GetDato(0) + stoi(operando));
+}

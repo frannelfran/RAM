@@ -38,6 +38,9 @@ class Instruccion {
  protected:
   string instruccion_;
   MemoriaDatos* registros_; // Conjunto de registros
+  Escritura* cinta_escritura_; // Cinta de escritura
+  Lectura* cinta_lectura_; // Cinta de lectura
+
 };
 
 /**
@@ -70,7 +73,7 @@ class Instruccion_ADD : public Instruccion {
  public:
   Instruccion_ADD(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "ADD"; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**
@@ -126,6 +129,7 @@ class Instruccion_WRITE : public Instruccion {
   Instruccion_WRITE(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "WRITE"; }
 
   void ejecutar(const Escritura& cinta_escritura, int operando) {};
+
 };
 
 /**
