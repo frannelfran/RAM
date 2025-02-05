@@ -49,7 +49,7 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
 */
 
 void UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
-  for (int i = 0; i < instrucciones_.size(); i++) {
+  for (long unsigned int i = 0; i < instrucciones_.size(); i++) {
     if (instrucciones_[i]->GetNombre() == instruccion) {
       cout << "Ejecutando " << instruccion << " " << operando << endl;
       instrucciones_[i]->ejecutar(operando);
