@@ -21,5 +21,5 @@
 */
 
 void Instruccion_LOAD::ejecutar(const string& operando) {
-  registros_.SetDato(0, stoi(operando));
+  registros_->SetDato(0, stoi(operando));
 }
