@@ -39,25 +39,12 @@ vector<string> fichero_to_line(string fichero) {
   string line;
   vector<string> lineas;
   for (string line; getline(file, line);) { // mientras haya lineas en el fichero
-      line = trim(line);
-        
-      if (!line.empty() && line[0] != '#') {
-        lineas.emplace_back(move(line));
-      }
-    }
-  //imprimo el vector
-  for (long unsigned int i = 0; i < lineas.size(); i++) {
-    cout << lineas[i] << endl;
-  }
-  // compruebo que las instrucciones están correctamente escritas
-  // miro si hay lineas vacias
-  for (long unsigned int i = 0; i < lineas.size(); i++) {
-    if (lineas[i] == "") {
-      lineas.erase(lineas.begin() + i);
+    line = trim(line);
+      
+    if (!line.empty() && line[0] != '#') {
+      lineas.emplace_back(move(line));
     }
   }
-  // miro si hay lineas que empiezan con # y en ese caso las elimino
-
   return lineas;
 }
 
@@ -100,13 +87,5 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     } else {
       cout << "Error en la instrucción siguiente:" << endl;
     }
-  }
-  // imprimmo todas las instrucciones
-  for (int i = 0; i < memoria_programa_.size(); i++) {
-    cout << "Instrucción: " << memoria_programa_[i].first << " Operando: " << memoria_programa_[i].second << " Linea: " << i << endl;
-  }
-  // imprimo todas las etiquetas
-  for (auto const& x : etiqueta_a_dirección_) {
-    cout << x.first << " " << x.second << endl;
   }
 }
