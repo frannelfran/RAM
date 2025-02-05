@@ -15,11 +15,3 @@
 
 #include"Instruccion.h"
 
-/** Instruccion::Instruccion()
-  * @brief Crea el objeto de la clase Instruccion.
-  * @param 
-  * @return objeto de la clase Instruccion
-  */
-Instruccion::Instruccion() {
-
-}

@@ -16,6 +16,7 @@
 #define C_Instruccion_H
 #include <string>
 #include "../Escritura/Escritura.h"
+#include "../Lectura/Lectura.h"
 
 using namespace std;
 
@@ -111,8 +112,47 @@ class Instruccion_READ : public Instruccion {
  public:
   Instruccion_READ() { instruccion_ = "READ"; }
 
-  void ejecutar(const Escritura& cinta_escritura) {};
+  void ejecutar(const Lectura& cinta_lectura, int operando) {};
 };
+
+/**
+ * @class Clase para representar la instrucción WRITE
+*/
+
+class Instruccion_WRITE : public Instruccion {
+ public:
+  Instruccion_WRITE() { instruccion_ = "WRITE"; }
+
+  void ejecutar(const Escritura& cinta_escritura, int operando) {};
+};
+
+/**
+ * @class Clase para representar la instrucción JUMP
+*/
+
+class Instruccion_JUMP : public Instruccion {
+ public:
+  Instruccion_JUMP() { instruccion_ = "JUMP"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción JZERO
+*/
+
+class Instruccion_JZERO : public Instruccion {
+ public:
+  Instruccion_JZERO() { instruccion_ = "JZERO"; }
+
+  void ejecutar(string& operando) override {};
+};
+
+/**
+ * @class Clase para representar la instrucción JGTZ
+*/
+
+
 
 
 
