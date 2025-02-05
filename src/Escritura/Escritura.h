@@ -28,9 +28,10 @@ class Escritura {
   Escritura() {}
 
   void VolcarEnFichero(ofstream& file);
+  void Escribir(int dato);
 
  private:
- vector<int> cinta_escritura;
+  vector<int> cinta_escritura;
 };
 
 #endif

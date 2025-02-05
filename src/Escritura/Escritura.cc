@@ -16,6 +16,15 @@
 #include"Escritura.h"
 
 /**
+ * @brief Función para escribir en la cinta de escritura
+ * @param dato Dato a escribir
+*/
+
+void Escritura::Escribir(int dato) {
+  cinta_escritura.push_back(dato);
+}
+
+/**
  * @brief Función para volcar en el fichero de salida
  * @param file Fichero de salida
 */
