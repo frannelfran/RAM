@@ -29,8 +29,8 @@ UnidadDeControl::UnidadDeControl(MemoriaDatos* registros, MemoriaPrograma* progr
   instrucciones_.push_back(new Instruccion_DIV(registros_));
   instrucciones_.push_back(new Instruccion_LOAD(registros_));
   instrucciones_.push_back(new Instruccion_STORE(registros_));
-  // instrucciones_.push_back(new Instruccion_READ(registros_));
-  // instrucciones_.push_back(new Instruccion_WRITE(registros_));
+  instrucciones_.push_back(new Instruccion_READ(registros_, cinta_lectura_));
+  instrucciones_.push_back(new Instruccion_WRITE(registros_, cinta_escritura_));
   instrucciones_.push_back(new Instruccion_JUMP(registros_));
   instrucciones_.push_back(new Instruccion_JGTZ(registros_));
   instrucciones_.push_back(new Instruccion_JZERO(registros_));

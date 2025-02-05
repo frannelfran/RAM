@@ -116,7 +116,7 @@ class Instruccion_DIV : public Instruccion {
 
 class Instruccion_READ : public Instruccion {
  public:
-  Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura): Instruccion(registros) { instruccion_ = "READ", cinta_lectura = cinta_lectura_; }
+  Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura = cinta_lectura_; }
 
   void ejecutar(const string& operando) override {};
 
@@ -130,9 +130,9 @@ class Instruccion_READ : public Instruccion {
 
 class Instruccion_WRITE : public Instruccion {
  public:
-  Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) { instruccion_ = "WRITE"; }
+  Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) { instruccion_ = "WRITE", cinta_escritura_ = cinta_escritura; }
 
-  void ejecutar(const Escritura& cinta_escritura, int operando) {};
+  void ejecutar(const string& operando) override {};
 
  private:
   Escritura* cinta_escritura_;
