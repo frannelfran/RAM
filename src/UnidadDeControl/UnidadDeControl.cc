@@ -35,8 +35,8 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
   instrucciones_.push_back(new Instruccion_SUB(registros));
   instrucciones_.push_back(new Instruccion_MUL(registros));
   instrucciones_.push_back(new Instruccion_DIV(registros));
-  instrucciones_.push_back(new Instruccion_READ(registros, cinta_lectura));
-  instrucciones_.push_back(new Instruccion_WRITE(registros, cinta_escritura));
+  instrucciones_.push_back(new Instruccion_READ(registros, cinta_lectura_));
+  instrucciones_.push_back(new Instruccion_WRITE(registros, cinta_escritura_));
   instrucciones_.push_back(new Instruccion_JUMP(registros));
   instrucciones_.push_back(new Instruccion_JGTZ(registros));
   instrucciones_.push_back(new Instruccion_JZERO(registros));

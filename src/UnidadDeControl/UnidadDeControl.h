@@ -32,14 +32,14 @@ class UnidadDeControl {
   void EjecutarInstruccion(const string& instruccion, const string& operando);
 
   friend ostream& operator<<(ostream& os, const UnidadDeControl& UDC) {
-    os << "Unidad de control" << endl;
-    os << "Instrucciones: " << endl;
+    os << "--- Unidad de control --- " << endl;
+    os << "--- Instrucciones --- " << endl;
     for (auto instruccion : UDC.instrucciones_) {
       os << instruccion->GetNombre() << endl;
     }
-    os << "Registros: " << endl;
+    os << "--- Registros ---" << endl;
     os << *UDC.registros_;
-    os << "Programa: " << endl;
+    os << "--- Programa ---" << endl;
     // os << *UDC.programa_;
     return os;
   }

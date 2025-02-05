@@ -56,6 +56,8 @@ int main(int argc, char *argv[]) {
   UDC.EjecutarInstruccion("SUB", "5");
   UDC.EjecutarInstruccion("MUL", "5");
   UDC.EjecutarInstruccion("DIV", "5");
+  UDC.EjecutarInstruccion("READ", "5");
+  UDC.EjecutarInstruccion("READ", "7");
 
   
   cout << UDC << endl;
