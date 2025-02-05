@@ -113,7 +113,7 @@ class Instruccion_DIV : public Instruccion {
 
 class Instruccion_READ : public Instruccion {
  public:
-  Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura = cinta_lectura_; }
+  Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura_ = cinta_lectura; }
 
   void ejecutar(const string& operando) override;
 
