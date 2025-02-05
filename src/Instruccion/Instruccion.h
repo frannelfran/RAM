@@ -30,7 +30,7 @@ class Instruccion {
   Instruccion(const MemoriaDatos& registros) : registros_(registros) {}
 
   // Método para ejecutar la instrucción
-  virtual void ejecutar(string& operando) = 0;
+  virtual void ejecutar(const string& operando) = 0;
 
   // Getters 
   inline string GetNombre() { return instruccion_; } // Obtener el nombre de la instrucción
@@ -48,7 +48,7 @@ class Instruccion_LOAD : public Instruccion {
  public:
   Instruccion_LOAD(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "LOAD"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**
@@ -59,7 +59,7 @@ class Instruccion_STORE : public Instruccion {
  public:
   Instruccion_STORE(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "STORE"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -70,7 +70,7 @@ class Instruccion_ADD : public Instruccion {
  public:
   Instruccion_ADD(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "ADD"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -81,7 +81,7 @@ class Instruccion_SUB : public Instruccion {
  public:
   Instruccion_SUB(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "SUB"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -92,7 +92,7 @@ class Instruccion_MUL : public Instruccion {
  public:
   Instruccion_MUL(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "MUL"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -103,7 +103,7 @@ class Instruccion_DIV : public Instruccion {
  public:
   Instruccion_DIV(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "DIV"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -136,7 +136,7 @@ class Instruccion_JUMP : public Instruccion {
  public:
   Instruccion_JUMP(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "JUMP"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -147,7 +147,7 @@ class Instruccion_JZERO : public Instruccion {
  public:
   Instruccion_JZERO(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "JZERO"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 /**
@@ -158,7 +158,7 @@ class Instruccion_JGTZ : public Instruccion {
  public:
   Instruccion_JGTZ(const MemoriaDatos& registros) : Instruccion(registros) { instruccion_ = "JGTZ"; }
 
-  void ejecutar(string& operando) override {};
+  void ejecutar(const string& operando) override {};
 };
 
 

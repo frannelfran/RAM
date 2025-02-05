@@ -15,3 +15,11 @@
 
 #include"Instruccion.h"
 
+/**
+ * @brief Método para ejecutar la instrucción LOAD
+ * @param operando Operando de la instrucción
+*/
+
+void Instruccion_LOAD::ejecutar(const string& operando) {
+  registros_.SetDato(0, stoi(operando));
+}
