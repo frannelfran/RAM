@@ -24,7 +24,7 @@ using namespace std;
 
 class MemoriaDatos {
  public:
-  MemoriaDatos();
+  MemoriaDatos() {}
 
   inline void SetDato(int posicion, int dato);
   inline int GetDato(int posicion);
