@@ -60,7 +60,7 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
   string operando = "";
   vector<string> instruccion_auxiliar;
   // hago un bucle para recorrer todas las lineas de codigo
-  for (int i = 0; i < lineas_de_codigo.size(); i++) {
+  for (long unsigned int i = 0; i < lineas_de_codigo.size(); i++) {
     instruccion = "";
     operando = "";
     instruccion_auxiliar = vector<string>();

@@ -32,7 +32,7 @@ int MemoriaDatos::GetDato(int pos) {
 */
 
 void MemoriaDatos::SetDato(int pos, int dato) {
-  if (pos >= registros_.size()) {
+  if (static_cast<long unsigned int>(pos) >= registros_.size()) {
     registros_.resize(pos + 1);
   }
   registros_[pos] = dato;

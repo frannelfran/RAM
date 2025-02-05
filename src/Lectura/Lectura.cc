@@ -48,7 +48,7 @@ vector<int> fichero_to_vector(string fichero) {
   * @return objeto de la clase Lectura
   */
 Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_de_lectura) {
-  int pos_lectura_= 0;
+  pos_lectura_= 0;
 }
 
 /** int Lectura::leer()
@@ -56,7 +56,7 @@ Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_d
   * @return int el siguiente elemento del vector
   */
 int Lectura::leer() {
-  if (pos_lectura_ < fichero_de_lectura_.size()) {
+  if (static_cast<long unsigned int>(pos_lectura_) < fichero_de_lectura_.size()) {
     return fichero_de_lectura_[pos_lectura_];
     pos_lectura_++;
   } else {

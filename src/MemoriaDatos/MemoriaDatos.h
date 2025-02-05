@@ -32,7 +32,7 @@ class MemoriaDatos {
   int GetDato(int posicion);
 
   friend ostream& operator<<(ostream& os, const MemoriaDatos& memoria) {
-    for (int i = 0; i < memoria.registros_.size(); i++) {
+    for (unsigned long int i = 0; i < memoria.registros_.size(); i++) {
       os << "Registro " << i << ": " << memoria.registros_[i] << endl;
     }
     return os;
