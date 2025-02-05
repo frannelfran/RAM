@@ -115,7 +115,7 @@ class Instruccion_READ : public Instruccion {
  public:
   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura = cinta_lectura_; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 
  private:
   Lectura* cinta_lectura_;
