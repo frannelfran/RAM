@@ -30,10 +30,9 @@ class MemoriaPrograma {
   MemoriaPrograma(vector<string> lineas_de_codigo);
   pair<int,string> Leer_siguiente_instruccion();
 
- private:vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
-  map<
-  string,int> etiqueta_a_dirección_; // relaciona las etiquetas con la dirección de la instrucción
-  int PC_;
+ private:
+  vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
+  map<string,int> etiqueta_a_dirección_; // relaciona las etiquetas con la dirección de la instrucción
 };
 
 #endif

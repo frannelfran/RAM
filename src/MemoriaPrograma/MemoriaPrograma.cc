@@ -56,7 +56,6 @@ vector<string> fichero_to_line(string fichero) {
   */
 MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
   memoria_programa_ = vector<pair<string,string>>();
-  PC_ = 0;
   string instruccion = "";
   string operando = "";
   vector<string> instruccion_auxiliar;
