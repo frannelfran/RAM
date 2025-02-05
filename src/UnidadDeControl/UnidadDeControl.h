@@ -16,12 +16,13 @@
 #define C_UnidadDeControl_H
 #include <vector>
 #include "../Instruccion/Instruccion.h"
+#include "../MemoriaPrograma/MemoriaPrograma.h"
 
 using namespace std;
 
 class UnidadDeControl {
  public:
-  UnidadDeControl(MemoriaDatos* registros); // Constructor por defecto
+  UnidadDeControl(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura); // Constructor por defecto
 
   // Método para ejecutar la instrucción
   void EjecutarInstruccion(const string& instruccion, const string& operando);
@@ -29,6 +30,9 @@ class UnidadDeControl {
  private:
   vector<Instruccion*> instrucciones_;
   MemoriaDatos* registros_;
+  MemoriaPrograma* programa_;
+  Lectura* cinta_lectura_;
+  Escritura* cinta_escritura_;
 };
 
 #endif

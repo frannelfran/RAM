@@ -21,8 +21,7 @@
   * @return objeto de la clase UnidadDeControl
 */
 
-UnidadDeControl::UnidadDeControl(MemoriaDatos* registros) {
-  registros_ = registros; // Inicializo los registros
+UnidadDeControl::UnidadDeControl(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura) : registros_(registros), programa_(programa), cinta_lectura_(cinta_lectura), cinta_escritura_(cinta_escritura) {
   // Creo todas las instrucciones
   instrucciones_.push_back(new Instruccion_ADD(registros_));
   instrucciones_.push_back(new Instruccion_SUB(registros_));
