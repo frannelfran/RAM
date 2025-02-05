@@ -52,7 +52,11 @@ int main(int argc, char *argv[]) {
 
   UDC.EjecutarInstruccion("LOAD", "10");
   UDC.EjecutarInstruccion("STORE", "5");
-  
+  UDC.EjecutarInstruccion("ADD", "5");
+  UDC.EjecutarInstruccion("SUB", "5");
+  UDC.EjecutarInstruccion("MUL", "5");
+  UDC.EjecutarInstruccion("DIV", "5");
+
   
   cout << UDC << endl;
 

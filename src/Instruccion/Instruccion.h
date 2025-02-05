@@ -82,7 +82,7 @@ class Instruccion_SUB : public Instruccion {
  public:
   Instruccion_SUB(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "SUB"; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**
@@ -93,7 +93,7 @@ class Instruccion_MUL : public Instruccion {
  public:
   Instruccion_MUL(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "MUL"; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**
@@ -104,7 +104,7 @@ class Instruccion_DIV : public Instruccion {
  public:
   Instruccion_DIV(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "DIV"; }
 
-  void ejecutar(const string& operando) override {};
+  void ejecutar(const string& operando) override;
 };
 
 /**

@@ -41,3 +41,30 @@ void Instruccion_STORE::ejecutar(const string& operando) {
 void Instruccion_ADD::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) + stoi(operando));
 }
+
+/**
+ * @brief Método para ejecutar la instrucción SUB
+ * @param operando Operando a restar al registro RO
+*/
+
+void Instruccion_SUB::ejecutar(const string& operando) {
+  registros_->SetDato(0, registros_->GetDato(0) - stoi(operando));
+}
+
+/**
+ * @brief Método para ejecutar la instrucción MUL
+ * @param operando Operando a multiplicar al registro RO
+*/
+
+void Instruccion_MUL::ejecutar(const string& operando) {
+  registros_->SetDato(0, registros_->GetDato(0) * stoi(operando));
+}
+
+/**
+ * @brief Método para ejecutar la instrucción DIV
+ * @param operando Operando a dividir al registro RO
+*/
+
+void Instruccion_DIV::ejecutar(const string& operando) {
+  registros_->SetDato(0, registros_->GetDato(0) / stoi(operando));
+}

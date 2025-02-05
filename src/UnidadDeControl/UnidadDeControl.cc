@@ -28,6 +28,7 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
   programa_ = programa;
   cinta_lectura_ = cinta_lectura;
   cinta_escritura_ = cinta_escritura;
+  PC_ = 0;
   instrucciones_.push_back(new Instruccion_LOAD(registros));
   instrucciones_.push_back(new Instruccion_STORE(registros));
   instrucciones_.push_back(new Instruccion_ADD(registros));
@@ -40,9 +41,6 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
   instrucciones_.push_back(new Instruccion_JGTZ(registros));
   instrucciones_.push_back(new Instruccion_JZERO(registros));
 }
-
-
-
 
 /**
  * @brief Método para ejecutar una instrucción

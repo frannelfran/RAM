@@ -50,6 +50,7 @@ class UnidadDeControl {
   MemoriaPrograma* programa_;
   Lectura* cinta_lectura_;
   Escritura* cinta_escritura_;
+  int PC_;
 };
 
 #endif
