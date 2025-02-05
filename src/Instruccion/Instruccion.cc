@@ -68,3 +68,12 @@ void Instruccion_MUL::ejecutar(const string& operando) {
 void Instruccion_DIV::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) / stoi(operando));
 }
+
+/**
+ * @brief Método para ejecutar la instrucción READ
+ * @param operando Registro donde se debe guardar lo leído en la cinta de lectura
+*/
+
+void Instruccion_READ::ejecutar(const string& operando) {
+  registros_->SetDato(stoi(operando), cinta_lectura_->leer());
+}
