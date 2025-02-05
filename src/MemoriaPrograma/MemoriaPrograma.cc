@@ -85,7 +85,7 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     } else if (instruccion_auxiliar.size() == 1 || instruccion_auxiliar[0] == "HALT") { // esto significa que hay una instrucción sin operando
        memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], "-1")); // le pongo un -1 porque no debería de usarse
     } else {
-      cout << "Error en la instrucción siguiente:" << endl;
+      throw invalid_argument("Error: La instrucción no tiene el formato correcto");
     }
   }
 }
