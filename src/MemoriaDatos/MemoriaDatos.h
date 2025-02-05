@@ -15,6 +15,8 @@
 #ifndef C_MemoriaDatos_H
 #define C_MemoriaDatos_H
 #include <vector>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -26,8 +28,15 @@ class MemoriaDatos {
  public:
   MemoriaDatos() {}
 
-  inline void SetDato(int posicion, int dato);
-  inline int GetDato(int posicion);
+  void SetDato(int posicion, int dato);
+  int GetDato(int posicion);
+
+  friend ostream& operator<<(ostream& os, const MemoriaDatos& memoria) {
+    for (int i = 0; i < memoria.registros_.size(); i++) {
+      os << "Registro " << i << ": " << memoria.registros_[i] << endl;
+    }
+    return os;
+  }
 
  private:
   vector<int> registros_;
