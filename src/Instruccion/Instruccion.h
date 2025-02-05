@@ -18,6 +18,7 @@
 #include "../Escritura/Escritura.h"
 #include "../Lectura/Lectura.h"
 #include "../MemoriaDatos/MemoriaDatos.h"
+#include <map>
 
 using namespace std;
 
@@ -115,9 +116,12 @@ class Instruccion_DIV : public Instruccion {
 
 class Instruccion_READ : public Instruccion {
  public:
-  Instruccion_READ(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "READ"; }
+  Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura): Instruccion(registros) { instruccion_ = "READ", cinta_lectura = cinta_lectura_; }
 
-  void ejecutar(const Lectura& cinta_lectura, int operando) {};
+  void ejecutar(const string& operando) override {};
+
+ private:
+  Lectura* cinta_lectura_;
 };
 
 /**
@@ -126,10 +130,12 @@ class Instruccion_READ : public Instruccion {
 
 class Instruccion_WRITE : public Instruccion {
  public:
-  Instruccion_WRITE(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "WRITE"; }
+  Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) { instruccion_ = "WRITE"; }
 
   void ejecutar(const Escritura& cinta_escritura, int operando) {};
 
+ private:
+  Escritura* cinta_escritura_;
 };
 
 /**
@@ -141,6 +147,9 @@ class Instruccion_JUMP : public Instruccion {
   Instruccion_JUMP(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JUMP"; }
 
   void ejecutar(const string& operando) override {};
+
+ private:
+  map<string, int> etiquetas_;
 };
 
 /**
@@ -152,6 +161,9 @@ class Instruccion_JZERO : public Instruccion {
   Instruccion_JZERO(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JZERO"; }
 
   void ejecutar(const string& operando) override {};
+
+ private:
+  map<string, int> etiquetas_;
 };
 
 /**
@@ -163,6 +175,9 @@ class Instruccion_JGTZ : public Instruccion {
   Instruccion_JGTZ(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JGTZ"; }
 
   void ejecutar(const string& operando) override {};
+
+ private:
+  map<string, int> etiquetas_;
 };
 
 
