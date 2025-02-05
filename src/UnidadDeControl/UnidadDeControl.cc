@@ -17,9 +17,39 @@
 
 /** UnidadDeControl::UnidadDeControl()
   * @brief Crea el objeto de la clase UnidadDeControl.
-  * @param 
+  * @param registros Objeto de la clase MemoriaDatos
   * @return objeto de la clase UnidadDeControl
-  */
-UnidadDeControl::UnidadDeControl() {
+*/
 
+UnidadDeControl::UnidadDeControl(MemoriaDatos* registros) {
+  registros_ = registros; // Inicializo los registros
+  // Creo todas las instrucciones
+  instrucciones_.push_back(new Instruccion_ADD(registros_));
+  instrucciones_.push_back(new Instruccion_SUB(registros_));
+  instrucciones_.push_back(new Instruccion_MUL(registros_));
+  instrucciones_.push_back(new Instruccion_DIV(registros_));
+  instrucciones_.push_back(new Instruccion_LOAD(registros_));
+  instrucciones_.push_back(new Instruccion_STORE(registros_));
+  // instrucciones_.push_back(new Instruccion_READ(registros_));
+  // instrucciones_.push_back(new Instruccion_WRITE(registros_));
+  instrucciones_.push_back(new Instruccion_JUMP(registros_));
+  instrucciones_.push_back(new Instruccion_JGTZ(registros_));
+  instrucciones_.push_back(new Instruccion_JZERO(registros_));
+}
+
+/**
+ * @brief Método para ejecutar una instrucción
+ * @param instruccion Nombre de la instrucción
+ * @param operando Operando de la instrucción
+*/
+
+void UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
+  for (int i = 0; i < instrucciones_.size(); i++) {
+    if (instrucciones_[i]->GetNombre() == instruccion) {
+      cout << "Ejecutando " << instruccion << " " << operando << endl;
+      instrucciones_[i]->ejecutar(operando);
+      return;
+    }
+  }
+  throw invalid_argument("Instrucción no válida");
 }

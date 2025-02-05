@@ -14,12 +14,21 @@
 //        02/04/25 - Creación (primera versión) del código
 #ifndef C_UnidadDeControl_H
 #define C_UnidadDeControl_H
+#include <vector>
+#include "../Instruccion/Instruccion.h"
+
+using namespace std;
 
 class UnidadDeControl {
  public:
-  UnidadDeControl();
+  UnidadDeControl(MemoriaDatos* registros); // Constructor por defecto
+
+  // Método para ejecutar la instrucción
+  void EjecutarInstruccion(const string& instruccion, const string& operando);
+
  private:
- 
+  vector<Instruccion*> instrucciones_;
+  MemoriaDatos* registros_;
 };
 
 #endif
