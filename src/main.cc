@@ -29,16 +29,35 @@ int main(int argc, char *argv[]) {
     //std::cerr << "Error no se han introducido los datos correctamente" << std::endl;  // lo he comentado porque ya en la función recoger_parametro se imprime el error
     return 1;
   }
+
+  UnidadDeControl UDC;
+
   try {
-    //Creo el objeto de la clase Lectura
-    Lectura lectura(fichero_to_vector(datos.ficheroEntrada));
-    //Creo el objeto de la clase Maquina
-    MemoriaPrograma memoria_programa(fichero_to_line(datos.ficheroPrograma));
+
+    // Inicializo la cinta de lectura
+    Lectura* cinta_lectura = new Lectura(fichero_to_vector(datos.ficheroEntrada));
+    // Inicializo la cinta de escritura
+    Escritura* cinta_escritura = new Escritura(datos.ficheroSalida);
+    // Inicializo la memoria de datos
+    MemoriaDatos* registros = new MemoriaDatos();
+    // Inicializo la memoria de programa
+    MemoriaPrograma* programa = new MemoriaPrograma(fichero_to_line(datos.ficheroPrograma));
+    // Inicializo la unidad de 
+    UDC.Inicializar(registros, programa, cinta_lectura, cinta_escritura);
     //Ejecuto la máquina
   } catch (const exception& e) {
     cerr << e.what() << endl;
     return 1;
   }
+
+  UDC.EjecutarInstruccion("LOAD", "10");
+  UDC.EjecutarInstruccion("STORE", "5");
+  
+  
+  cout << UDC << endl;
+
+
+
 
   return 0;
 }

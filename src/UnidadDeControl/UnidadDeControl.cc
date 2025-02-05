@@ -15,26 +15,34 @@
 
 #include"UnidadDeControl.h"
 
-/** UnidadDeControl::UnidadDeControl()
-  * @brief Crea el objeto de la clase UnidadDeControl.
-  * @param registros Objeto de la clase MemoriaDatos
-  * @return objeto de la clase UnidadDeControl
+/**
+ * @brief Método para inicializar la unidad de control
+ * @param registros Conjunto de registros
+ * @param programa Memoria de programa
+ * @param cinta_lectura Cinta de lectura
+ * @param cinta_escritura Cinta de escritura
 */
 
-UnidadDeControl::UnidadDeControl(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura) : registros_(registros), programa_(programa), cinta_lectura_(cinta_lectura), cinta_escritura_(cinta_escritura) {
-  // Creo todas las instrucciones
-  instrucciones_.push_back(new Instruccion_ADD(registros_));
-  instrucciones_.push_back(new Instruccion_SUB(registros_));
-  instrucciones_.push_back(new Instruccion_MUL(registros_));
-  instrucciones_.push_back(new Instruccion_DIV(registros_));
-  instrucciones_.push_back(new Instruccion_LOAD(registros_));
-  instrucciones_.push_back(new Instruccion_STORE(registros_));
-  instrucciones_.push_back(new Instruccion_READ(registros_, cinta_lectura_));
-  instrucciones_.push_back(new Instruccion_WRITE(registros_, cinta_escritura_));
-  instrucciones_.push_back(new Instruccion_JUMP(registros_));
-  instrucciones_.push_back(new Instruccion_JGTZ(registros_));
-  instrucciones_.push_back(new Instruccion_JZERO(registros_));
+void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura) {
+  registros_ = registros;
+  programa_ = programa;
+  cinta_lectura_ = cinta_lectura;
+  cinta_escritura_ = cinta_escritura;
+  instrucciones_.push_back(new Instruccion_LOAD(registros));
+  instrucciones_.push_back(new Instruccion_STORE(registros));
+  instrucciones_.push_back(new Instruccion_ADD(registros));
+  instrucciones_.push_back(new Instruccion_SUB(registros));
+  instrucciones_.push_back(new Instruccion_MUL(registros));
+  instrucciones_.push_back(new Instruccion_DIV(registros));
+  instrucciones_.push_back(new Instruccion_READ(registros, cinta_lectura));
+  instrucciones_.push_back(new Instruccion_WRITE(registros, cinta_escritura));
+  instrucciones_.push_back(new Instruccion_JUMP(registros));
+  instrucciones_.push_back(new Instruccion_JGTZ(registros));
+  instrucciones_.push_back(new Instruccion_JZERO(registros));
 }
+
+
+
 
 /**
  * @brief Método para ejecutar una instrucción

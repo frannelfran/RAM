@@ -22,10 +22,27 @@ using namespace std;
 
 class UnidadDeControl {
  public:
-  UnidadDeControl(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura); // Constructor por defecto
+
+  // Constructor por defecto
+  UnidadDeControl() {}
+  
+  void Inicializar(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura); // Inicializa la unidad de control
 
   // Método para ejecutar la instrucción
   void EjecutarInstruccion(const string& instruccion, const string& operando);
+
+  friend ostream& operator<<(ostream& os, const UnidadDeControl& UDC) {
+    os << "Unidad de control" << endl;
+    os << "Instrucciones: " << endl;
+    for (auto instruccion : UDC.instrucciones_) {
+      os << instruccion->GetNombre() << endl;
+    }
+    os << "Registros: " << endl;
+    os << *UDC.registros_;
+    os << "Programa: " << endl;
+    // os << *UDC.programa_;
+    return os;
+  }
 
  private:
   vector<Instruccion*> instrucciones_;

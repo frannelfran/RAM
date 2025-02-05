@@ -25,13 +25,14 @@ using namespace std;
 
 class Escritura {
  public:
-  Escritura() {}
+  Escritura(const string& fichero_salida) : fichero_salida(fichero_salida) {}
 
   void VolcarEnFichero(ofstream& file);
   void Escribir(int dato);
 
  private:
   vector<int> cinta_escritura;
+  string fichero_salida;
 };
 
 #endif

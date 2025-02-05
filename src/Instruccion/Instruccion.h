@@ -39,9 +39,6 @@ class Instruccion {
  protected:
   string instruccion_;
   MemoriaDatos* registros_; // Conjunto de registros
-  Escritura* cinta_escritura_; // Cinta de escritura
-  Lectura* cinta_lectura_; // Cinta de lectura
-
 };
 
 /**
