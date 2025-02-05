@@ -32,7 +32,7 @@ class Lectura {
   int leer();
  private:
   vector<int> fichero_de_lectura_;
-  int pos_lectura_;
+  int pos_lectura_ = 0;
 };
 
 

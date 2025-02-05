@@ -56,9 +56,10 @@ Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_d
   * @return int el siguiente elemento del vector
   */
 int Lectura::leer() {
-  if (static_cast<long unsigned int>(pos_lectura_) < fichero_de_lectura_.size()) {
-    return fichero_de_lectura_[pos_lectura_];
+  if (pos_lectura_ < fichero_de_lectura_.size()) {
+    int dato = fichero_de_lectura_[pos_lectura_];
     pos_lectura_++;
+    return dato;
   } else {
     throw out_of_range("Error: Se ha intentado leer más allá del vector");
   }
