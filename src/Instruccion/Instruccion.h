@@ -152,10 +152,12 @@ class Instruccion_JZERO : public Instruccion {
  * @class Clase para representar la instrucción JGTZ
 */
 
+class Instruccion_JGTZ : public Instruccion {
+ public:
+  Instruccion_JGTZ() { instruccion_ = "JGTZ"; }
 
-
-
-
+  void ejecutar(string& operando) override {};
+};
 
 
 #endif
