@@ -14,6 +14,20 @@
 //        02/04/25 - Creación (primera versión) del código
 
 #include"MemoriaPrograma.h"
+/**
+  * @brief Función utilitaria para trim de cadenas (para quitarles los espacios en blanco)
+  * @param string s
+  * @return string 
+  */
+string trim(const string& s) {
+  auto start = s.begin();
+  while (start != s.end() && isspace(*start)) ++start;
+  
+  auto end = s.end();
+  do { --end; } while (distance(start, end) > 0 && isspace(*end));
+  
+  return string(start, end + 1);
+}
 
 /** ficher_to_line()
   * @brief Lee un fichero y lo convierte en un vector de strings
@@ -24,16 +38,20 @@ vector<string> fichero_to_line(string fichero) {
   ifstream file(fichero);
   string line;
   vector<string> lineas;
-  while (getline(file, line)) {
-    lineas.push_back(line);
-  }
+  for (string line; getline(file, line);) { // mientras haya lineas en el fichero
+      line = trim(line);
+        
+      if (!line.empty() && line[0] != '#') {
+        lineas.emplace_back(move(line));
+      }
+    }
   //imprimo el vector
-  for (int i = 0; i < lineas.size(); i++) {
+  for (long unsigned int i = 0; i < lineas.size(); i++) {
     cout << lineas[i] << endl;
   }
   // compruebo que las instrucciones están correctamente escritas
   // miro si hay lineas vacias
-  for (int i = 0; i < lineas.size(); i++) {
+  for (long unsigned int i = 0; i < lineas.size(); i++) {
     if (lineas[i] == "") {
       lineas.erase(lineas.begin() + i);
     }
@@ -60,22 +78,35 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     instruccion = "";
     operando = "";
     instruccion_auxiliar = vector<string>();
-
     // Utilizo istringstream para leer la línea como si fuese un fichero
     istringstream iss(lineas_de_codigo[i]);
-    // Recopilo todas las
+    // Recopilo todas las palabras en un vector
     while (iss >> instruccion) { 
       instruccion_auxiliar.push_back(instruccion);
     }
     // miro si hay una etiqueta
     if (instruccion_auxiliar.size() == 2) {
-      memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], instruccion_auxiliar[1]));
+      if (instruccion_auxiliar[1] == "HALT") {
+        memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], "-1"));
+        etiqueta_a_dirección_[instruccion_auxiliar[0]] = i;
+      } else {
+        memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], instruccion_auxiliar[1]));
+      }
     } else if (instruccion_auxiliar.size() == 3) { // esto significa que hay una etiqueta antes de las instrucciones
       memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], instruccion_auxiliar[2]));
       etiqueta_a_dirección_[instruccion_auxiliar[0]] = i;
+    } else if (instruccion_auxiliar.size() == 1 || instruccion_auxiliar[0] == "HALT") { // esto significa que hay una instrucción sin operando
+       memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], "-1")); // le pongo un -1 porque no debería de usarse
     } else {
-      cout << "Error en la instrucción" << endl;
+      cout << "Error en la instrucción siguiente:" << endl;
     }
   }
-
+  // imprimmo todas las instrucciones
+  for (int i = 0; i < memoria_programa_.size(); i++) {
+    cout << "Instrucción: " << memoria_programa_[i].first << " Operando: " << memoria_programa_[i].second << " Linea: " << i << endl;
+  }
+  // imprimo todas las etiquetas
+  for (auto const& x : etiqueta_a_dirección_) {
+    cout << x.first << " " << x.second << endl;
+  }
 }

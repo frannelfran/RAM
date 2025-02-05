@@ -17,6 +17,7 @@
 #include"funciones_main/funciones_main.h"
 #include"Lectura/Lectura.h"
 #include"UnidadDeControl/UnidadDeControl.h"
+#include"MemoriaPrograma/MemoriaPrograma.h"
 #include<iostream>
 
 using namespace std;
@@ -32,6 +33,7 @@ int main(int argc, char *argv[]) {
     //Creo el objeto de la clase Lectura
     Lectura lectura(fichero_to_vector(datos.ficheroEntrada));
     //Creo el objeto de la clase Maquina
+    MemoriaPrograma memoria_programa(fichero_to_line(datos.ficheroPrograma));
     //Ejecuto la máquina
   } catch (const exception& e) {
     cerr << e.what() << endl;
