@@ -85,19 +85,13 @@ void UnidadDeControl::EjecutarPrograma() {
 
 ostream& operator<<(ostream& os, const UnidadDeControl& UDC) {
   os << "--- Unidad de control --- " << endl;
-  os << "--- Instrucciones --- " << endl;
-  for (auto instruccion : UDC.instrucciones_) {
-    os << instruccion->GetNombre() << endl;
-  }
   os << "--- Registros ---" << endl;
   os << *UDC.registros_;
-  //os << "--- Programa ---" << endl;
-  //os << *UDC.programa_;
-  //os << "--- Cinta de lectura ---" << endl;
-  //os << *UDC.cinta_lectura_;
-  //os << "--- Cinta de escritura ---" << endl;
-  //os << *UDC.cinta_escritura_;
-  //os << "PC: " << UDC.PC_ << endl;
-  //os << "------------------------" << endl;
+  os << "--- Cinta de lectura ---" << endl;
+  os << *UDC.cinta_lectura_;
+  os << "--- Cinta de escritura ---" << endl;
+  os << *UDC.cinta_escritura_;
+  os << "PC: " << UDC.PC_ << endl;
+  os << "------------------------" << endl;
   return os;
 }
