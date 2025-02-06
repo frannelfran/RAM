@@ -119,7 +119,11 @@ int Instruccion_WRITE::ejecutar(const string& operando) {
 */
 
 int Instruccion_JUMP::ejecutar(const string& operando) {
-  return etiquetas_.find(operando)->second;
+  auto posicion = etiquetas_.find(operando);
+  if (posicion == etiquetas_.end()) {
+    throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
+  }
+  return posicion->second;
 }
 
 /**
@@ -131,7 +135,11 @@ int Instruccion_JUMP::ejecutar(const string& operando) {
 
 int Instruccion_JZERO::ejecutar(const string& operando) {
   if (registros_->GetDato(0) == 0) {
-    return etiquetas_.find(operando)->second;
+    auto posicion = etiquetas_.find(operando);
+    if (posicion == etiquetas_.end()) {
+      throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
+    }
+    return posicion->second;
   }
   return -1;
 }
@@ -145,7 +153,11 @@ int Instruccion_JZERO::ejecutar(const string& operando) {
 
 int Instruccion_JGTZ::ejecutar(const string& operando) {
   if (registros_->GetDato(0) > 0) {
-    return etiquetas_.find(operando)->second;
+    auto posicion = etiquetas_.find(operando);
+    if (posicion == etiquetas_.end()) {
+      throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
+    }
+    return posicion->second;
   }
   return -1;
 }
