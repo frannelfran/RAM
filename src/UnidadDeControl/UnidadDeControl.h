@@ -41,6 +41,10 @@ class UnidadDeControl {
     os << *UDC.registros_;
     os << "--- Programa ---" << endl;
     // os << *UDC.programa_;
+    os << "--- Cinta de lectura ---" << endl;
+    os << *UDC.cinta_lectura_;
+    os << "--- Cinta de escritura ---" << endl;
+    os << *UDC.cinta_escritura_;
     return os;
   }
 

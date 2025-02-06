@@ -29,6 +29,14 @@ class Escritura {
 
   void VolcarEnFichero(ofstream& file);
   void Escribir(int dato);
+  friend ostream& operator<<(ostream& os, const Escritura& escritura) {
+    os << "Escritura: ";
+    for (int i = 0; i < escritura.cinta_escritura.size(); i++) {
+      os << escritura.cinta_escritura[i] << " ";
+    }
+    os << endl;
+    return os;
+  }
 
  private:
   vector<int> cinta_escritura;

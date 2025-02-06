@@ -31,7 +31,7 @@ class Instruccion {
   Instruccion(MemoriaDatos* registros) : registros_(registros) {}
 
   // Método para ejecutar la instrucción
-  virtual void ejecutar(const string& operando) = 0;
+  virtual int ejecutar(const string& operando) = 0;
 
   // Getters 
   inline string GetNombre() { return instruccion_; } // Obtener el nombre de la instrucción
@@ -49,7 +49,7 @@ class Instruccion_LOAD : public Instruccion {
  public:
   Instruccion_LOAD(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "LOAD"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -60,7 +60,7 @@ class Instruccion_STORE : public Instruccion {
  public:
   Instruccion_STORE(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "STORE"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -71,7 +71,7 @@ class Instruccion_ADD : public Instruccion {
  public:
   Instruccion_ADD(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "ADD"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -82,7 +82,7 @@ class Instruccion_SUB : public Instruccion {
  public:
   Instruccion_SUB(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "SUB"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -93,7 +93,7 @@ class Instruccion_MUL : public Instruccion {
  public:
   Instruccion_MUL(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "MUL"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -104,7 +104,7 @@ class Instruccion_DIV : public Instruccion {
  public:
   Instruccion_DIV(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "DIV"; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 };
 
 /**
@@ -115,7 +115,7 @@ class Instruccion_READ : public Instruccion {
  public:
   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura_ = cinta_lectura; }
 
-  void ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
 
  private:
   Lectura* cinta_lectura_;
@@ -129,7 +129,7 @@ class Instruccion_WRITE : public Instruccion {
  public:
   Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) { instruccion_ = "WRITE", cinta_escritura_ = cinta_escritura; }
 
-  void ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override;
 
  private:
   Escritura* cinta_escritura_;
@@ -143,7 +143,7 @@ class Instruccion_JUMP : public Instruccion {
  public:
   Instruccion_JUMP(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JUMP"; }
 
-  void ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override {};
 
  private:
   map<string, int> etiquetas_;
@@ -157,7 +157,7 @@ class Instruccion_JZERO : public Instruccion {
  public:
   Instruccion_JZERO(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JZERO"; }
 
-  void ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override {};
 
  private:
   map<string, int> etiquetas_;
@@ -171,7 +171,7 @@ class Instruccion_JGTZ : public Instruccion {
  public:
   Instruccion_JGTZ(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JGTZ"; }
 
-  void ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override {};
 
  private:
   map<string, int> etiquetas_;

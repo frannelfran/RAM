@@ -18,62 +18,88 @@
 /**
  * @brief Método para ejecutar la instrucción LOAD
  * @param operando Operando a guardar en RO
+ * @return -1
 */
 
-void Instruccion_LOAD::ejecutar(const string& operando) {
+int Instruccion_LOAD::ejecutar(const string& operando) {
   registros_->SetDato(0, stoi(operando));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción STORE
  * @param operando Operando donde guardar el dato del registro RO
+ * @return -1
 */
 
-void Instruccion_STORE::ejecutar(const string& operando) {
+int Instruccion_STORE::ejecutar(const string& operando) {
   registros_->SetDato(stoi(operando), registros_->GetDato(0));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción ADD
  * @param operando Operando a sumar al registro RO
+ * @return -1
 */
 
-void Instruccion_ADD::ejecutar(const string& operando) {
+int Instruccion_ADD::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) + stoi(operando));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción SUB
  * @param operando Operando a restar al registro RO
+ * @return -1 
 */
 
-void Instruccion_SUB::ejecutar(const string& operando) {
+int Instruccion_SUB::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) - stoi(operando));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción MUL
  * @param operando Operando a multiplicar al registro RO
+ * @return -1 
 */
 
-void Instruccion_MUL::ejecutar(const string& operando) {
+int Instruccion_MUL::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) * stoi(operando));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción DIV
  * @param operando Operando a dividir al registro RO
+ * @return -1 
 */
 
-void Instruccion_DIV::ejecutar(const string& operando) {
+int Instruccion_DIV::ejecutar(const string& operando) {
   registros_->SetDato(0, registros_->GetDato(0) / stoi(operando));
+  return -1;
 }
 
 /**
  * @brief Método para ejecutar la instrucción READ
  * @param operando Registro donde se debe guardar lo leído en la cinta de lectura
+ * @return -1 
 */
 
-void Instruccion_READ::ejecutar(const string& operando) {
+int Instruccion_READ::ejecutar(const string& operando) {
   registros_->SetDato(stoi(operando), cinta_lectura_->leer());
+  return -1;
 }
+
+/**
+ * @brief Método para ejecutar la instrucción WRITE
+ * @param operando Registro que se debe escribir en la cinta de escritura
+ * @return -1 
+*/
+
+int Instruccion_WRITE::ejecutar(const string& operando) {
+  cinta_escritura_->Escribir(registros_->GetDato(stoi(operando)));
+  return -1;
+}
+
