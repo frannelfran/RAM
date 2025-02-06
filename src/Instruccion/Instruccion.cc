@@ -16,6 +16,36 @@
 #include"Instruccion.h"
 
 /**
+ * @brief Función que para que funcione el operando =i
+ * @param operando Inmediato a cargar
+ * @return Devuelve el inmediato
+*/
+
+int Instruccion::Inmediato(const string& operando) {
+  return stoi(operando.substr(1));
+}
+
+/**
+ * @brief Función que para que funcione el operando i
+ * @param operando Direccionamiento directo
+ * @return Devuelve el dato del registro i
+*/
+
+int Instruccion::DireccionamientoDirecto(const string& operando) {
+  return registros_->GetDato(stoi(operando));
+}
+
+/**
+ * @brief Función que para que funcione el operando *i
+ * @param operando Direccionamiento indirecto
+ * @return Devuelve el dato del registro i
+*/
+
+int Instruccion::DireccionamientoIndirecto(const string& operando) {
+  return registros_->GetDato(registros_->GetDato(stoi(operando.substr(1))));
+}
+
+/**
  * @brief Método para ejecutar la instrucción LOAD
  * @details Guarda el operando en el registro RO
  * @param operando Operando a guardar en RO
@@ -25,16 +55,13 @@
 int Instruccion_LOAD::ejecutar(const string& operando) {
   if(operando.at(0) == '=') {
     //quito el igual
-    string op = operando.substr(1);
-    registros_->SetDato(0, stoi(op));
+    registros_->SetDato(0, Inmediato(operando));
     return -1;
   } else if (operando.at(0) == '*') {
-    string op = operando.substr(1);
-    int dato_registro_i = registros_->GetDato(stoi(operando));
-    registros_->SetDato(0, registros_->GetDato(dato_registro_i));
+    registros_->SetDato(0, DireccionamientoIndirecto(operando));
     return -1;
   } else {
-    registros_->SetDato(stoi(operando), this->registros_->GetDato(0));
+    registros_->SetDato(0, DireccionamientoDirecto(operando));
     return -1;
   }
 }
@@ -47,8 +74,16 @@ int Instruccion_LOAD::ejecutar(const string& operando) {
 */
 
 int Instruccion_STORE::ejecutar(const string& operando) {
-  registros_->SetDato(stoi(operando), registros_->GetDato(0));
-  return -1;
+  if (operando.at(0) == '=') {
+    throw invalid_argument("Con STORE no se puede poner el operando =.");
+  }
+  if (operando.at(0) == '*') {
+    registros_->SetDato(DireccionamientoDirecto(operando.substr(1)), registros_->GetDato(0));
+    return -1;
+  } else {
+    registros_->SetDato(stoi(operando), registros_->GetDato(0));
+    return -1;
+  }
 }
 
 /**
@@ -59,8 +94,16 @@ int Instruccion_STORE::ejecutar(const string& operando) {
 */
 
 int Instruccion_ADD::ejecutar(const string& operando) {
-  registros_->SetDato(0, registros_->GetDato(0) + stoi(operando));
-  return -1;
+  if(operando.at(0) == '=') {
+    registros_->SetDato(0, registros_->GetDato(0) + Inmediato(operando));
+    return -1;
+  } else if (operando.at(0) == '*') {
+    registros_->SetDato(0, registros_->GetDato(0) + DireccionamientoIndirecto(operando));
+    return -1;
+  } else {
+    registros_->SetDato(0, registros_->GetDato(0) + DireccionamientoDirecto(operando));
+    return -1;
+  }
 }
 
 /**
@@ -71,8 +114,16 @@ int Instruccion_ADD::ejecutar(const string& operando) {
 */
 
 int Instruccion_SUB::ejecutar(const string& operando) {
-  registros_->SetDato(0, registros_->GetDato(0) - stoi(operando));
-  return -1;
+  if(operando.at(0) == '=') {
+    registros_->SetDato(0, registros_->GetDato(0) - Inmediato(operando));
+    return -1;
+  } else if (operando.at(0) == '*') {
+    registros_->SetDato(0, registros_->GetDato(0) - DireccionamientoIndirecto(operando));
+    return -1;
+  } else {
+    registros_->SetDato(0, registros_->GetDato(0) - DireccionamientoDirecto(operando));
+    return -1;
+  }
 }
 
 /**
@@ -83,8 +134,16 @@ int Instruccion_SUB::ejecutar(const string& operando) {
 */
 
 int Instruccion_MUL::ejecutar(const string& operando) {
-  registros_->SetDato(0, registros_->GetDato(0) * stoi(operando));
-  return -1;
+  if(operando.at(0) == '=') {
+    registros_->SetDato(0, registros_->GetDato(0) * Inmediato(operando));
+    return -1;
+  } else if (operando.at(0) == '*') {
+    registros_->SetDato(0, registros_->GetDato(0) * DireccionamientoIndirecto(operando));
+    return -1;
+  } else {
+    registros_->SetDato(0, registros_->GetDato(0) * DireccionamientoDirecto(operando));
+    return -1;
+  }
 }
 
 /**
@@ -95,8 +154,16 @@ int Instruccion_MUL::ejecutar(const string& operando) {
 */
 
 int Instruccion_DIV::ejecutar(const string& operando) {
-  registros_->SetDato(0, registros_->GetDato(0) / stoi(operando));
-  return -1;
+  if(operando.at(0) == '=') {
+    registros_->SetDato(0, registros_->GetDato(0) / Inmediato(operando));
+    return -1;
+  } else if (operando.at(0) == '*') {
+    registros_->SetDato(0, registros_->GetDato(0) / DireccionamientoIndirecto(operando));
+    return -1;
+  } else {
+    registros_->SetDato(0, registros_->GetDato(0) / DireccionamientoDirecto(operando));
+    return -1;
+  }
 }
 
 /**
@@ -107,8 +174,16 @@ int Instruccion_DIV::ejecutar(const string& operando) {
 */
 
 int Instruccion_READ::ejecutar(const string& operando) {
-  registros_->SetDato(stoi(operando), cinta_lectura_->leer());
-  return -1;
+  if (operando.at(0) == '=') {
+    throw invalid_argument("Con READ no se puede poner el operando =.");
+  }
+  if (operando.at(0) == '*') {
+    registros_->SetDato(DireccionamientoDirecto(operando), cinta_lectura_->leer());
+    return -1;
+  } else {
+    registros_->SetDato(stoi(operando), cinta_lectura_->leer());
+    return -1;
+  }
 }
 
 /**
@@ -119,8 +194,16 @@ int Instruccion_READ::ejecutar(const string& operando) {
 */
 
 int Instruccion_WRITE::ejecutar(const string& operando) {
-  cinta_escritura_->Escribir(registros_->GetDato(stoi(operando)));
-  return -1;
+  if(operando.at(0) == '=') { // si es un inmediato
+    cinta_escritura_->Escribir(this->Inmediato(operando));
+    return -1;
+  } else if (operando.at(0) == '*') { // si es un direccionamiento indirecto
+    cinta_escritura_->Escribir(this->DireccionamientoIndirecto(operando));
+    return -1;
+  } else { // si es un direccionamiento directo
+    cinta_escritura_->Escribir(this->DireccionamientoDirecto(operando));
+    return -1;
+  }
 }
 
 /**

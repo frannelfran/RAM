@@ -33,7 +33,12 @@ class Instruccion {
   // Método para ejecutar la instrucción
   virtual int ejecutar(const string& operando) = 0;
 
-  // Getters 
+  // idea: podemos hacer una clase 
+  int Inmediato(const string& operando);
+  int DireccionamientoDirecto(const string& operando);
+  int DireccionamientoIndirecto(const string& operando);
+
+  // Getters
   inline string GetNombre() { return instruccion_; } // Obtener el nombre de la instrucción
 
  protected:

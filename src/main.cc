@@ -23,19 +23,16 @@
 using namespace std;
 
 void test(UnidadDeControl &UDC) {
-  UDC.EjecutarInstruccion("LOAD", "10");
+  UDC.EjecutarInstruccion("LOAD", "=5");
+  cout << UDC << endl;
+  UDC.EjecutarInstruccion("STORE", "10");
+  //.EjecutarInstruccion("STORE", "=11");
+  cout << UDC << endl;
   UDC.EjecutarInstruccion("STORE", "5");
-  UDC.EjecutarInstruccion("ADD", "5");
-  UDC.EjecutarInstruccion("SUB", "5");
-  UDC.EjecutarInstruccion("MUL", "5");
-  UDC.EjecutarInstruccion("DIV", "5");
-  UDC.EjecutarInstruccion("READ", "5");
-  UDC.EjecutarInstruccion("READ", "7");
-  UDC.EjecutarInstruccion("WRITE", "5");
-  UDC.EjecutarInstruccion("JUMP", "FIN");
-  UDC.EjecutarInstruccion("JGTZ", "FIN");
-  UDC.EjecutarInstruccion("LOAD", "0");
-  UDC.EjecutarInstruccion("JZERO", "FIN");
+  UDC.EjecutarInstruccion("LOAD", "=20");
+  UDC.EjecutarInstruccion("STORE", "*5");
+
+  
   cout << UDC << endl;
 
 }
@@ -72,8 +69,8 @@ int main(int argc, char *argv[]) {
   test(UDC);
 
   try {
-  //Ejecuto el programa
-  UDC.EjecutarPrograma();
+    //Ejecuto el programa
+    //UDC.EjecutarPrograma();
   } catch (const exception& e) {
     cerr << e.what() << endl;
     return 1;
