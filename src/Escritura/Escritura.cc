@@ -35,3 +35,12 @@ void Escritura::VolcarEnFichero(ofstream& file) {
     file << digito;
   }
 }
+
+ostream& operator<<(ostream& os, const Escritura& escritura) {
+    os << "Escritura: ";
+    for (int i = 0; i < escritura.cinta_escritura.size(); i++) {
+      os << escritura.cinta_escritura[i] << " ";
+    }
+    os << endl;
+    return os;
+  }

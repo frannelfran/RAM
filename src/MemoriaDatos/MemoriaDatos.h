@@ -31,12 +31,7 @@ class MemoriaDatos {
   void SetDato(int posicion, int dato);
   int GetDato(int posicion);
 
-  friend ostream& operator<<(ostream& os, const MemoriaDatos& memoria) {
-    for (unsigned long int i = 0; i < memoria.registros_.size(); i++) {
-      os << "Registro " << i << ": " << memoria.registros_[i] << endl;
-    }
-    return os;
-  }
+  friend ostream& operator<<(ostream& os, const MemoriaDatos& memoria);
 
  private:
   vector<int> registros_;

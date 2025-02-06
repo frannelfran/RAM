@@ -66,4 +66,13 @@ int Lectura::leer() {
 }
 
 
+ostream& operator<<(ostream& os, const Lectura& lectura) {
+    os << "Lectura: ";
+    for (int i = 0; i < lectura.fichero_de_lectura_.size(); i++) {
+      os << lectura.fichero_de_lectura_[i] << " ";
+    }
+    os << endl;
+    return os;
+  }
+
 

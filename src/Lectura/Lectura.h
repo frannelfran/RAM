@@ -30,14 +30,7 @@ class Lectura {
  public:
   Lectura(vector<int> fichero_de_lectura);
   int leer();
-  friend ostream& operator<<(ostream& os, const Lectura& lectura) {
-    os << "Lectura: ";
-    for (int i = 0; i < lectura.fichero_de_lectura_.size(); i++) {
-      os << lectura.fichero_de_lectura_[i] << " ";
-    }
-    os << endl;
-    return os;
-  }
+  friend ostream& operator<<(ostream& os, const Lectura& lectura);
  private:
   vector<int> fichero_de_lectura_;
   int pos_lectura_ = 0;

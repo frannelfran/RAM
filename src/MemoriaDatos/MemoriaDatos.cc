@@ -37,3 +37,11 @@ void MemoriaDatos::SetDato(int pos, int dato) {
   }
   registros_[pos] = dato;
 }
+
+
+ostream& operator<<(ostream& os, const MemoriaDatos& memoria) {
+    for (unsigned long int i = 0; i < memoria.registros_.size(); i++) {
+      os << "Registro " << i << ": " << memoria.registros_[i] << endl;
+    }
+    return os;
+  }
