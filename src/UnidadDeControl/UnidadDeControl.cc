@@ -37,9 +37,9 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
   instrucciones_.push_back(new Instruccion_DIV(registros));
   instrucciones_.push_back(new Instruccion_READ(registros, cinta_lectura_));
   instrucciones_.push_back(new Instruccion_WRITE(registros, cinta_escritura_));
-  instrucciones_.push_back(new Instruccion_JUMP(registros));
-  instrucciones_.push_back(new Instruccion_JGTZ(registros));
-  instrucciones_.push_back(new Instruccion_JZERO(registros));
+  instrucciones_.push_back(new Instruccion_JUMP(registros, programa_->GetEtiquetas()));
+  instrucciones_.push_back(new Instruccion_JGTZ(registros, programa_->GetEtiquetas()));
+  instrucciones_.push_back(new Instruccion_JZERO(registros, programa_->GetEtiquetas()));
 }
 
 /**
@@ -52,6 +52,11 @@ void UnidadDeControl::EjecutarInstruccion(const string& instruccion, const strin
   for (long unsigned int i = 0; i < instrucciones_.size(); i++) {
     if (instrucciones_[i]->GetNombre() == instruccion) {
       cout << "Ejecutando " << instruccion << " " << operando << endl;
+      if (instruccion == "JUMP" || instruccion == "JGTZ" || instruccion == "JZERO") {
+        cout << "hola" << endl;
+        cout << "salta a: " << instrucciones_[i]->ejecutar(operando) << endl;
+        return;
+      }
       instrucciones_[i]->ejecutar(operando);
       return;
     }

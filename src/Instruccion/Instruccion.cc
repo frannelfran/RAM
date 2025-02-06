@@ -17,6 +17,7 @@
 
 /**
  * @brief Método para ejecutar la instrucción LOAD
+ * @details Guarda el operando en el registro RO
  * @param operando Operando a guardar en RO
  * @return -1
 */
@@ -28,6 +29,7 @@ int Instruccion_LOAD::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción STORE
+ * @details Guarda el dato del registro RO en el operando
  * @param operando Operando donde guardar el dato del registro RO
  * @return -1
 */
@@ -39,6 +41,7 @@ int Instruccion_STORE::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción ADD
+ * @details Suma el registro RO con el operando
  * @param operando Operando a sumar al registro RO
  * @return -1
 */
@@ -50,6 +53,7 @@ int Instruccion_ADD::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción SUB
+ * @details Resta el operando al registro RO
  * @param operando Operando a restar al registro RO
  * @return -1 
 */
@@ -61,6 +65,7 @@ int Instruccion_SUB::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción MUL
+ * @details Multiplica el registro RO por el operando
  * @param operando Operando a multiplicar al registro RO
  * @return -1 
 */
@@ -72,6 +77,7 @@ int Instruccion_MUL::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción DIV
+ * @details Divide el registro RO por el operando
  * @param operando Operando a dividir al registro RO
  * @return -1 
 */
@@ -83,6 +89,7 @@ int Instruccion_DIV::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción READ
+ * @details Lee de la cinta de lectura y guarda en el registro que se le pasa
  * @param operando Registro donde se debe guardar lo leído en la cinta de lectura
  * @return -1 
 */
@@ -94,12 +101,52 @@ int Instruccion_READ::ejecutar(const string& operando) {
 
 /**
  * @brief Método para ejecutar la instrucción WRITE
+ * @details Escribe en la cinta de escritura el registro que se le pasa
  * @param operando Registro que se debe escribir en la cinta de escritura
  * @return -1 
 */
 
 int Instruccion_WRITE::ejecutar(const string& operando) {
   cinta_escritura_->Escribir(registros_->GetDato(stoi(operando)));
+  return -1;
+}
+
+/**
+ * @brief Método para ejecutar la instrucción JUMP
+ * @details Salta a la etiqueta
+ * @param operando Etiqueta a la que saltar
+ * @return -1 
+*/
+
+int Instruccion_JUMP::ejecutar(const string& operando) {
+  return etiquetas_.find(operando)->second;
+}
+
+/**
+ * @brief Método para ejecutar la instrucción JZERO
+ * @details Salta a la etiqueta si el registro RO es igual a 0
+ * @param operando Etiqueta a la que saltar
+ * @return -1
+*/ 
+
+int Instruccion_JZERO::ejecutar(const string& operando) {
+  if (registros_->GetDato(0) == 0) {
+    return etiquetas_.find(operando)->second;
+  }
+  return -1;
+}
+
+/**
+ * @brief Método para ejecutar la instrucción JGTZ
+ * @details Salta a la etiqueta si el registro RO es mayor que 0
+ * @param operando Etiqueta a la que saltar
+ * @return -1 
+*/
+
+int Instruccion_JGTZ::ejecutar(const string& operando) {
+  if (registros_->GetDato(0) > 0) {
+    return etiquetas_.find(operando)->second;
+  }
   return -1;
 }
 

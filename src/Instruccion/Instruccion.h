@@ -141,9 +141,9 @@ class Instruccion_WRITE : public Instruccion {
 
 class Instruccion_JUMP : public Instruccion {
  public:
-  Instruccion_JUMP(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JUMP"; }
+  Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JUMP"; etiquetas_ = etiquetas;}
 
-  int ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override;
 
  private:
   map<string, int> etiquetas_;
@@ -155,9 +155,9 @@ class Instruccion_JUMP : public Instruccion {
 
 class Instruccion_JZERO : public Instruccion {
  public:
-  Instruccion_JZERO(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JZERO"; }
+  Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JZERO"; etiquetas_ = etiquetas;}
 
-  int ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override;
 
  private:
   map<string, int> etiquetas_;
@@ -169,9 +169,9 @@ class Instruccion_JZERO : public Instruccion {
 
 class Instruccion_JGTZ : public Instruccion {
  public:
-  Instruccion_JGTZ(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "JGTZ"; }
+  Instruccion_JGTZ(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JGTZ"; etiquetas_ = etiquetas; }
 
-  int ejecutar(const string& operando) override {};
+  int ejecutar(const string& operando) override;
 
  private:
   map<string, int> etiquetas_;

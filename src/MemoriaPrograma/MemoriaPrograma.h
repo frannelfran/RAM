@@ -29,6 +29,7 @@ class MemoriaPrograma {
  public:
   MemoriaPrograma(vector<string> lineas_de_codigo);
   pair<int,string> Leer_siguiente_instruccion();
+  map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
 
  private:
   vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
