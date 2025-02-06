@@ -70,15 +70,9 @@ void UnidadDeControl::EjecutarPrograma() {
     if (instruccion.first == "HALT") {
       cout << "Programa finalizado con exito" << endl;
       break;
-    } else if (instruccion.first == "JUMP" || instruccion.first == "JGTZ" || instruccion.first == "JZERO") {
-      cout << "Instruccion de salto" << endl;
-      int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
-      cout << "Posicion auxiliar: " << pos_aux << endl;
-      this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
-    } else {
-    EjecutarInstruccion(instruccion.first, instruccion.second);
-    this->PC_++;
-    }
+    } 
+    int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
+    this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
   }
 }
 
