@@ -20,7 +20,6 @@
 #include"MemoriaPrograma/MemoriaPrograma.h"
 #include<iostream>
 
-
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -51,6 +50,12 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  test(UDC);
+
+  return 0;
+}
+
+void test(UnidadDeControl &UDC) {
   UDC.EjecutarInstruccion("LOAD", "10");
   UDC.EjecutarInstruccion("STORE", "5");
   UDC.EjecutarInstruccion("ADD", "5");
@@ -65,11 +70,5 @@ int main(int argc, char *argv[]) {
   UDC.EjecutarInstruccion("LOAD", "0");
   UDC.EjecutarInstruccion("JZERO", "fin:");
 
-  
   cout << UDC << endl;
-
-
-
-
-  return 0;
 }
