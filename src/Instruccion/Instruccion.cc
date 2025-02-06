@@ -23,8 +23,18 @@
 */
 
 int Instruccion_LOAD::ejecutar(const string& operando) {
-  registros_->SetDato(0, stoi(operando));
-  return -1;
+  if(operando.at(0) == '=') {
+    //quito el igual
+    string op = operando.substr(1);
+    registros_->SetDato(0, stoi(op));
+    return -1;
+  } else if (operando.at(0) == '*') {
+    string op = operando.substr(1);
+
+  } else {
+    registros_->SetDato(stoi(operando), this->registros_->GetDato(0));
+    return -1;
+  }
 }
 
 /**
