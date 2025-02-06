@@ -22,6 +22,24 @@
 
 using namespace std;
 
+void test(UnidadDeControl &UDC) {
+  UDC.EjecutarInstruccion("LOAD", "10");
+  UDC.EjecutarInstruccion("STORE", "5");
+  UDC.EjecutarInstruccion("ADD", "5");
+  UDC.EjecutarInstruccion("SUB", "5");
+  UDC.EjecutarInstruccion("MUL", "5");
+  UDC.EjecutarInstruccion("DIV", "5");
+  UDC.EjecutarInstruccion("READ", "5");
+  UDC.EjecutarInstruccion("READ", "7");
+  UDC.EjecutarInstruccion("WRITE", "5");
+  UDC.EjecutarInstruccion("JUMP", "fin:");
+  UDC.EjecutarInstruccion("JGTZ", "fin:");
+  UDC.EjecutarInstruccion("LOAD", "0");
+  UDC.EjecutarInstruccion("JZERO", "fin:");
+
+  cout << UDC << endl;
+}
+
 int main(int argc, char *argv[]) {
   //Compruebo si se han introducido los argumentos necesarios
   Dato datos = recoger_parametro(argc, argv);
@@ -49,26 +67,7 @@ int main(int argc, char *argv[]) {
     cerr << e.what() << endl;
     return 1;
   }
-
   test(UDC);
 
   return 0;
-}
-
-void test(UnidadDeControl &UDC) {
-  UDC.EjecutarInstruccion("LOAD", "10");
-  UDC.EjecutarInstruccion("STORE", "5");
-  UDC.EjecutarInstruccion("ADD", "5");
-  UDC.EjecutarInstruccion("SUB", "5");
-  UDC.EjecutarInstruccion("MUL", "5");
-  UDC.EjecutarInstruccion("DIV", "5");
-  UDC.EjecutarInstruccion("READ", "5");
-  UDC.EjecutarInstruccion("READ", "7");
-  UDC.EjecutarInstruccion("WRITE", "5");
-  UDC.EjecutarInstruccion("JUMP", "fin:");
-  UDC.EjecutarInstruccion("JGTZ", "fin:");
-  UDC.EjecutarInstruccion("LOAD", "0");
-  UDC.EjecutarInstruccion("JZERO", "fin:");
-
-  cout << UDC << endl;
 }
