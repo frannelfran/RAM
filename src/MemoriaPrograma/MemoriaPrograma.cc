@@ -88,3 +88,16 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     }
   }
 }
+
+/**
+ * @brief Función para leer la instrucción en la dirección dada
+ * @param direccion Dirección de la instrucción
+ * @return pair<string, string> Instrucción y operando
+*/
+
+pair<string, string> MemoriaPrograma::Leer_instruccion(int direccion) {
+  if (static_cast<long unsigned int>(direccion) >= memoria_programa_.size()) {
+    throw out_of_range("Error: Se ha intentado leer más allá de la memoria de programa");
+  }
+  return memoria_programa_[direccion];
+}

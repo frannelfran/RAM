@@ -28,7 +28,7 @@ vector<string> fichero_to_line(string fichero);
 class MemoriaPrograma {
  public:
   MemoriaPrograma(vector<string> lineas_de_codigo);
-  pair<int,string> Leer_siguiente_instruccion();
+  pair<string, string> Leer_instruccion(int direccion);
   map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
 
  private:
