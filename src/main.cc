@@ -66,11 +66,11 @@ int main(int argc, char *argv[]) {
 
 
   //Ejecuto el test
-  test(UDC);
+  //test(UDC);
 
   try {
     //Ejecuto el programa
-    //UDC.EjecutarPrograma();
+    UDC.EjecutarPrograma();
   } catch (const exception& e) {
     cerr << e.what() << endl;
     return 1;

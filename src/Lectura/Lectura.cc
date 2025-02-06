@@ -58,7 +58,6 @@ Lectura::Lectura(vector<int> fichero_de_lectura) : fichero_de_lectura_(fichero_d
 int Lectura::leer() {
   if (static_cast<long unsigned int>(pos_lectura_) < fichero_de_lectura_.size()) {
     int dato = fichero_de_lectura_[pos_lectura_];
-    cout << "Leyendo " << dato << "posicion" << pos_lectura_ <<endl;
     pos_lectura_++;
     return dato;
   } else {
