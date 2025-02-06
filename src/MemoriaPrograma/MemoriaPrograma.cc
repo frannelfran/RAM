@@ -68,20 +68,26 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     istringstream iss(lineas_de_codigo[i]);
     // Recopilo todas las palabras en un vector
     while (iss >> instruccion) { 
-      std::transform(instruccion.begin(), instruccion.end(), instruccion.begin(), ::toupper);
-      instruccion_auxiliar.push_back(instruccion); // paso todas las instrucciones a mayúsculas
+      std::transform(instruccion.begin(), instruccion.end(), instruccion.begin(), ::toupper); // paso todas las instrucciones a mayúsculas
+      instruccion_auxiliar.push_back(instruccion); 
     }
     // miro si hay una etiqueta
     if (instruccion_auxiliar.size() == 2) {
       if (instruccion_auxiliar[1] == "HALT") {
         memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], "-1"));
-        etiqueta_a_dirección_[instruccion_auxiliar[0]] = i;
+        // le quito los dos puntos a la etiqueta
+        string etiqueta = instruccion_auxiliar[0];
+        etiqueta = etiqueta.substr(0, etiqueta.size() - 1);
+        etiqueta_a_dirección_[etiqueta] = i;
       } else {
         memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], instruccion_auxiliar[1]));
       }
     } else if (instruccion_auxiliar.size() == 3) { // esto significa que hay una etiqueta antes de las instrucciones
       memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], instruccion_auxiliar[2]));
-      etiqueta_a_dirección_[instruccion_auxiliar[0]] = i;
+      // le quito los dos puntos a la etiqueta
+      string etiqueta = instruccion_auxiliar[0];
+      etiqueta = etiqueta.substr(0, etiqueta.size() - 1);
+      etiqueta_a_dirección_[etiqueta] = i;
     } else if (instruccion_auxiliar.size() == 1 || instruccion_auxiliar[0] == "HALT") { // esto significa que hay una instrucción sin operando
        memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], "-1")); // le pongo un -1 porque no debería de usarse
     } else {

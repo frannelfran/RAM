@@ -48,22 +48,39 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
  * @param operando Operando de la instrucción
 */
 
-void UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
+int UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
   for (long unsigned int i = 0; i < instrucciones_.size(); i++) {
     if (instrucciones_[i]->GetNombre() == instruccion) {
       cout << "Ejecutando " << instruccion << " " << operando << endl;
-      if (instruccion == "JUMP" || instruccion == "JGTZ" || instruccion == "JZERO") {
-        cout << "hola" << endl;
-        cout << "salta a: " << instrucciones_[i]->ejecutar(operando) << endl;
-        return;
-      }
-      instrucciones_[i]->ejecutar(operando);
-      return;
+      return (instrucciones_[i]->ejecutar(operando));
     }
   }
   throw invalid_argument("Instrucción no válida");
 }
 
+/**
+ * @brief Hace el bucle del programa
+*/
+
+void UnidadDeControl::EjecutarPrograma() {
+  this->PC_ = 0;
+  while (true) {
+    pair<string, string> instruccion = programa_->Leer_instruccion(this->PC_);
+    cout << "PC: " << PC_ << endl;
+    if (instruccion.first == "HALT") {
+      cout << "Programa finalizado con exito" << endl;
+      break;
+    } else if (instruccion.first == "JUMP" || instruccion.first == "JGTZ" || instruccion.first == "JZERO") {
+      cout << "Instruccion de salto" << endl;
+      int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
+      cout << "Posicion auxiliar: " << pos_aux << endl;
+      this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
+    } else {
+    EjecutarInstruccion(instruccion.first, instruccion.second);
+    this->PC_++;
+    }
+  }
+}
 
 /**
  * @brief Sobrecarga del operador de salida
@@ -81,10 +98,12 @@ ostream& operator<<(ostream& os, const UnidadDeControl& UDC) {
   os << "--- Registros ---" << endl;
   os << *UDC.registros_;
   os << "--- Programa ---" << endl;
-  // os << *UDC.programa_;
+  os << *UDC.programa_;
   os << "--- Cinta de lectura ---" << endl;
   os << *UDC.cinta_lectura_;
   os << "--- Cinta de escritura ---" << endl;
   os << *UDC.cinta_escritura_;
+  os << "PC: " << UDC.PC_ << endl;
+  os << "------------------------" << endl;
   return os;
 }

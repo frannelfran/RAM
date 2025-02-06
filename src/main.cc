@@ -32,12 +32,12 @@ void test(UnidadDeControl &UDC) {
   UDC.EjecutarInstruccion("READ", "5");
   UDC.EjecutarInstruccion("READ", "7");
   UDC.EjecutarInstruccion("WRITE", "5");
-  UDC.EjecutarInstruccion("JUMP", "fin:");
-  UDC.EjecutarInstruccion("JGTZ", "fin:");
+  UDC.EjecutarInstruccion("JUMP", "FIN");
+  UDC.EjecutarInstruccion("JGTZ", "FIN");
   UDC.EjecutarInstruccion("LOAD", "0");
-  UDC.EjecutarInstruccion("JZERO", "fin:");
-
+  UDC.EjecutarInstruccion("JZERO", "FIN");
   cout << UDC << endl;
+
 }
 
 int main(int argc, char *argv[]) {
@@ -60,14 +60,23 @@ int main(int argc, char *argv[]) {
     MemoriaDatos* registros = new MemoriaDatos();
     // Inicializo la memoria de programa
     MemoriaPrograma* programa = new MemoriaPrograma(fichero_to_line(datos.ficheroPrograma));
-    // Inicializo la unidad de 
+    // Inicializo la unidad de control
     UDC.Inicializar(registros, programa, cinta_lectura, cinta_escritura);
-    //Ejecuto la máquina
   } catch (const exception& e) {
     cerr << e.what() << endl;
     return 1;
   }
+
+
+  //Ejecuto el test
   test(UDC);
 
+  try {
+  //Ejecuto el programa
+  UDC.EjecutarPrograma();
+  } catch (const exception& e) {
+    cerr << e.what() << endl;
+    return 1;
+  }
   return 0;
 }

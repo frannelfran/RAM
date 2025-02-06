@@ -29,7 +29,8 @@ class UnidadDeControl {
   void Inicializar(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura); // Inicializa la unidad de control
 
   // Método para ejecutar la instrucción
-  void EjecutarInstruccion(const string& instruccion, const string& operando);
+  int EjecutarInstruccion(const string& instruccion, const string& operando);
+  void EjecutarPrograma(); // Ejecuta el programa
 
   friend ostream& operator<<(ostream& os, const UnidadDeControl& UDC);
 

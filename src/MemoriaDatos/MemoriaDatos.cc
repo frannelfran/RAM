@@ -22,6 +22,9 @@
 */
 
 int MemoriaDatos::GetDato(int pos) {
+  if (static_cast<long unsigned int>(pos) >= registros_.size()) {
+    return 0;
+  }
   return registros_[pos];
 }
 
@@ -40,8 +43,8 @@ void MemoriaDatos::SetDato(int pos, int dato) {
 
 
 ostream& operator<<(ostream& os, const MemoriaDatos& memoria) {
-    for (unsigned long int i = 0; i < memoria.registros_.size(); i++) {
-      os << "Registro " << i << ": " << memoria.registros_[i] << endl;
-    }
-    return os;
+  for (unsigned long int i = 0; i < memoria.registros_.size(); i++) {
+    os << "Registro " << i << ": " << memoria.registros_[i] << endl;
   }
+  return os;
+}
