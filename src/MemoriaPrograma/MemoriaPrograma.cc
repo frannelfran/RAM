@@ -68,7 +68,8 @@ MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
     istringstream iss(lineas_de_codigo[i]);
     // Recopilo todas las palabras en un vector
     while (iss >> instruccion) { 
-      instruccion_auxiliar.push_back(instruccion);
+      std::transform(instruccion.begin(), instruccion.end(), instruccion.begin(), ::toupper);
+      instruccion_auxiliar.push_back(instruccion); // paso todas las instrucciones a mayúsculas
     }
     // miro si hay una etiqueta
     if (instruccion_auxiliar.size() == 2) {
@@ -101,3 +102,21 @@ pair<string, string> MemoriaPrograma::Leer_instruccion(int direccion) {
   }
   return memoria_programa_[direccion];
 }
+
+
+/**
+ * @brief Función para imprimir la memoria de programa
+ * @param os ostream
+ * @param memoria MemoriaPrograma
+ * @return ostream
+*/
+
+ostream& operator<<(ostream& os, const MemoriaPrograma& memoria) {
+    for (long unsigned int i = 0; i < memoria.memoria_programa_.size(); i++) {
+      os << i << " -> " << memoria.memoria_programa_[i].first << " " << memoria.memoria_programa_[i].second << endl;
+    }
+    for (auto etiqueta : memoria.etiqueta_a_dirección_) {
+      os << etiqueta.first << " -> " << etiqueta.second << endl;
+    }
+    return os;
+  }

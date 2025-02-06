@@ -19,7 +19,9 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include <sstream>
+#include <sstream>    // Para std::istringstream
+#include <algorithm>  // Para std::transform
+#include <cctype>     // Para ::toupper
 
 using namespace std;
 
@@ -30,6 +32,7 @@ class MemoriaPrograma {
   MemoriaPrograma(vector<string> lineas_de_codigo);
   pair<string, string> Leer_instruccion(int direccion);
   map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
+  friend ostream& operator<<(ostream& os, const MemoriaPrograma& memoria);
 
  private:
   vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
