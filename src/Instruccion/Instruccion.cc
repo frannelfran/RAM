@@ -30,7 +30,9 @@ int Instruccion_LOAD::ejecutar(const string& operando) {
     return -1;
   } else if (operando.at(0) == '*') {
     string op = operando.substr(1);
-
+    int dato_registro_i = registros_->GetDato(stoi(operando));
+    registros_->SetDato(0, registros_->GetDato(dato_registro_i));
+    return -1;
   } else {
     registros_->SetDato(stoi(operando), this->registros_->GetDato(0));
     return -1;
