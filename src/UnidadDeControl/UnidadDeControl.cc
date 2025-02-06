@@ -66,7 +66,7 @@ void UnidadDeControl::EjecutarPrograma() {
   this->PC_ = 0;
   while (true) {
     pair<string, string> instruccion = programa_->Leer_instruccion(this->PC_);
-    cout << "PC: " << PC_ << endl;
+    cout << *this << endl;
     if (instruccion.first == "HALT") {
       cout << "Programa finalizado con exito" << endl;
       break;

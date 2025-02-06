@@ -174,11 +174,15 @@ int Instruccion_DIV::ejecutar(const string& operando) {
 */
 
 int Instruccion_READ::ejecutar(const string& operando) {
+  if (operando == "0" || stoi(operando) == this->DireccionamientoDirecto(operando)) {
+    throw invalid_argument("Con READ no se puede poner el operando 0.");
+  }
   if (operando.at(0) == '=') {
     throw invalid_argument("Con READ no se puede poner el operando =.");
   }
   if (operando.at(0) == '*') {
-    registros_->SetDato(DireccionamientoDirecto(operando), cinta_lectura_->leer());
+    string aux = operando.substr(1);
+    registros_->SetDato(DireccionamientoDirecto(aux), cinta_lectura_->leer());
     return -1;
   } else {
     registros_->SetDato(stoi(operando), cinta_lectura_->leer());
@@ -194,10 +198,15 @@ int Instruccion_READ::ejecutar(const string& operando) {
 */
 
 int Instruccion_WRITE::ejecutar(const string& operando) {
-  if(operando.at(0) == '=') { // si es un inmediato
+  string aux = operando.substr(1);
+  if (operando == "0" || stoi(aux) == this->DireccionamientoDirecto(aux)) {
+    throw invalid_argument("Con WRITE no se puede poner el operando 0.");
+  }
+  if (operando.at(0) == '=') { // si es un inmediato
     cinta_escritura_->Escribir(this->Inmediato(operando));
     return -1;
   } else if (operando.at(0) == '*') { // si es un direccionamiento indirecto
+    cout << this->DireccionamientoIndirecto(operando) << endl;
     cinta_escritura_->Escribir(this->DireccionamientoIndirecto(operando));
     return -1;
   } else { // si es un direccionamiento directo
