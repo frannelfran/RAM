@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_READ_H
 #define C_Instruccion_READ_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción READ
@@ -22,7 +22,7 @@
 
 class Instruccion_READ : public Instruccion {
   public:
-   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) { instruccion_ = "READ", cinta_lectura_ = cinta_lectura; }
+   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura);
  
    int ejecutar(const string& operando) override;
  

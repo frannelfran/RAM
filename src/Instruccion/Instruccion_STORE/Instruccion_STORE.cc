@@ -16,6 +16,16 @@
 #include"Instruccion_STORE.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_STORE
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_STORE
+ */
+
+Instruccion_STORE::Instruccion_STORE(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "STORE";
+}
+
+/**
  * @brief Método para ejecutar la instrucción STORE
  * @details Guarda el dato del registro RO en el operando
  * @param operando Operando donde guardar el dato del registro RO

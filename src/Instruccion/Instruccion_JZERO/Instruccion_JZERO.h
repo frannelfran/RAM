@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_JZERO_H
 #define C_Instruccion_JZERO_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción JZERO
@@ -22,7 +22,7 @@
 
 class Instruccion_JZERO : public Instruccion {
   public:
-   Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JZERO"; etiquetas_ = etiquetas;}
+   Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas);
  
    int ejecutar(const string& operando) override;
  

@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_DIV_H
 #define C_Instruccion_DIV_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción DIV
@@ -22,7 +22,7 @@
 
 class Instruccion_DIV : public Instruccion {
   public:
-   Instruccion_DIV(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "DIV"; }
+   Instruccion_DIV(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

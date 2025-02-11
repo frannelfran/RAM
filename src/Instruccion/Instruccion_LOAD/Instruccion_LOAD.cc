@@ -16,6 +16,16 @@
 #include"Instruccion_LOAD.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_LOAD
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_LOAD
+*/
+
+Instruccion_LOAD::Instruccion_LOAD(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "LOAD";
+}
+
+/**
  * @brief Método para ejecutar la instrucción LOAD
  * @details Guarda el operando en el registro RO
  * @param operando Operando a guardar en RO

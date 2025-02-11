@@ -16,6 +16,16 @@
 #include"Instruccion_READ.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_READ
+ * @param registros Conjunto de registros
+ * @param cinta_lectura Cinta de lectura
+ */
+
+Instruccion_READ::Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) {
+  instruccion_ = "READ";
+  cinta_lectura_ = cinta_lectura;
+}
+/**
  * @brief Método para ejecutar la instrucción READ
  * @details Lee de la cinta de lectura y guarda en el registro que se le pasa
  * @param operando Registro donde se debe guardar lo leído en la cinta de lectura

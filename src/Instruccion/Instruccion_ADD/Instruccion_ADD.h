@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_ADD_H
 #define C_Instruccion_ADD_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción ADD
@@ -22,7 +22,7 @@
 
 class Instruccion_ADD : public Instruccion {
   public:
-   Instruccion_ADD(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "ADD"; }
+   Instruccion_ADD(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

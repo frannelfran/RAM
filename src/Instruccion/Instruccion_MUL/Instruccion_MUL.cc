@@ -15,6 +15,14 @@
 
 #include"Instruccion_MUL.h"
 
+/**
+ * @brief Constructor de la clase Instruccion_MUL
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_MUL
+*/
+Instruccion_MUL::Instruccion_MUL(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "MUL";
+}
 
 /**
  * @brief Método para ejecutar la instrucción MUL

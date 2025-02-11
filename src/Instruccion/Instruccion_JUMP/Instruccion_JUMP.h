@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_JUMP_H
 #define C_Instruccion_JUMP_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción JUMP
@@ -22,8 +22,8 @@
 
 class Instruccion_JUMP : public Instruccion {
   public:
-   Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JUMP"; etiquetas_ = etiquetas;}
- 
+   Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas);
+   
    int ejecutar(const string& operando) override;
  
   private:

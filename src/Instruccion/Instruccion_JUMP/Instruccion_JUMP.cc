@@ -16,6 +16,18 @@
 #include"Instruccion_JUMP.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_JUMP
+ * @param registros Conjunto de registros
+ * @param etiquetas Conjunto de etiquetas
+ * @return Crea el objeto Instruccion_JUMP
+*/
+
+Instruccion_JUMP::Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+  instruccion_ = "JUMP";
+  etiquetas_ = etiquetas;
+}
+
+/**
  * @brief Método para ejecutar la instrucción JUMP
  * @details Salta a la etiqueta
  * @param operando Etiqueta a la que saltar

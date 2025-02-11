@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_SUB_H
 #define C_Instruccion_SUB_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción SUB
@@ -22,7 +22,7 @@
 
 class Instruccion_SUB : public Instruccion {
   public:
-   Instruccion_SUB(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "SUB"; }
+   Instruccion_SUB(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

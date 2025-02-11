@@ -16,6 +16,16 @@
 #include"Instruccion_DIV.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_DIV
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_DIV
+*/
+
+Instruccion_DIV::Instruccion_DIV(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "DIV";
+}
+
+/**
  * @brief Método para ejecutar la instrucción DIV
  * @details Divide el registro RO por el operando
  * @param operando Operando a dividir al registro RO

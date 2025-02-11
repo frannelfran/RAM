@@ -16,6 +16,16 @@
 #include"Instruccion_SUB.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_SUB
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_SUB
+ */
+
+Instruccion_SUB::Instruccion_SUB(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "SUB";
+}
+
+/**
  * @brief Método para ejecutar la instrucción SUB
  * @details Resta el operando al registro RO
  * @param operando Operando a restar al registro RO

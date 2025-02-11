@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_WRITE_H
 #define C_Instruccion_WRITE_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción WRITE
@@ -22,7 +22,7 @@
 
 class Instruccion_WRITE : public Instruccion {
   public:
-   Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) { instruccion_ = "WRITE", cinta_escritura_ = cinta_escritura; }
+   Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura);
  
    int ejecutar(const string& operando) override;
  

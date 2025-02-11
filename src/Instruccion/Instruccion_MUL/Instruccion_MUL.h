@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_MULT_H
 #define C_Instruccion_MULT_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción MUL
@@ -22,7 +22,7 @@
 
 class Instruccion_MUL : public Instruccion {
   public:
-   Instruccion_MUL(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "MUL"; }
+   Instruccion_MUL(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

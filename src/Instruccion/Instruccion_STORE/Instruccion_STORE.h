@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_STORE_H
 #define C_Instruccion_STORE_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción STORE
@@ -22,7 +22,7 @@
 
 class Instruccion_STORE : public Instruccion {
   public:
-   Instruccion_STORE(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "STORE"; }
+   Instruccion_STORE(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

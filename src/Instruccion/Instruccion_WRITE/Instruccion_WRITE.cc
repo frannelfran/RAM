@@ -16,6 +16,18 @@
 #include"Instruccion_WRITE.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_WRITE
+ * @param registros Conjunto de registros
+ * @param cinta_escritura Cinta de escritura
+ * @return Crea el objeto Instruccion_WRITE
+ */
+
+Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) {
+  instruccion_ = "WRITE";
+  cinta_escritura_ = cinta_escritura;
+}
+
+/**
  * @brief Método para ejecutar la instrucción WRITE
  * @details Escribe en la cinta de escritura el registro que se le pasa
  * @param operando Registro que se debe escribir en la cinta de escritura

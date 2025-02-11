@@ -16,6 +16,18 @@
 #define C_UnidadDeControl_H
 #include <vector>
 #include "../Instruccion/Instruccion.h"
+#include "../Instruccion/Instruccion_ADD/Instruccion_ADD.h"
+#include "../Instruccion/Instruccion_DIV/Instruccion_DIV.h"
+#include "../Instruccion/Instruccion_JGTZ/Instruccion_JGTZ.h"
+#include "../Instruccion/Instruccion_JUMP/Instruccion_JUMP.h"
+#include "../Instruccion/Instruccion_JZERO/Instruccion_JZERO.h"
+#include "../Instruccion/Instruccion_LOAD/Instruccion_LOAD.h"
+#include "../Instruccion/Instruccion_MUL/Instruccion_MUL.h"
+#include "../Instruccion/Instruccion_READ/Instruccion_READ.h"
+#include "../Instruccion/Instruccion_STORE/Instruccion_STORE.h"
+#include "../Instruccion/Instruccion_SUB/Instruccion_SUB.h"
+#include "../Instruccion/Instruccion_WRITE/Instruccion_WRITE.h"
+
 #include "../MemoriaPrograma/MemoriaPrograma.h"
 
 using namespace std;

@@ -16,6 +16,16 @@
 #include"Instruccion_ADD.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_ADD
+ * @param registros Conjunto de registros
+ * @return Crea el objeto Instruccion_ADD
+*/
+
+Instruccion_ADD::Instruccion_ADD(MemoriaDatos* registros) : Instruccion(registros) {
+  instruccion_ = "ADD";
+}
+
+/**
  * @brief Método para ejecutar la instrucción ADD
  * @details Suma el registro RO con el operando
  * @param operando Operando a sumar al registro RO

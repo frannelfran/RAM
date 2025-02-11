@@ -14,7 +14,7 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_LOAD_H
 #define C_Instruccion_LOAD_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción LOAD
@@ -22,7 +22,7 @@
 
 class Instruccion_LOAD : public Instruccion {
   public:
-   Instruccion_LOAD(MemoriaDatos* registros) : Instruccion(registros) { instruccion_ = "LOAD"; }
+   Instruccion_LOAD(MemoriaDatos* registros);
  
    int ejecutar(const string& operando) override;
  };

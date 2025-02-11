@@ -14,20 +14,20 @@
 //        02/11/25 - Creación (primera versión) del código
 #ifndef C_Instruccion_JGTZ_H
 #define C_Instruccion_JGTZ_H
-#include "Instruccion.h"
+#include "../Instruccion.h"
 
 /**
  * @class Clase para representar la instrucción JGTZ
 */
 
 class Instruccion_JGTZ : public Instruccion {
-  public:
-   Instruccion_JGTZ(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) { instruccion_ = "JGTZ"; etiquetas_ = etiquetas; }
+ public:
+  Instruccion_JGTZ(MemoriaDatos* registros, map<string, int> etiquetas);
  
-   int ejecutar(const string& operando) override;
+  int ejecutar(const string& operando) override;
  
-  private:
-   map<string, int> etiquetas_;
- };
+ private:
+  map<string, int> etiquetas_;
+};
 
 #endif

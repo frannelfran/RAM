@@ -16,6 +16,18 @@
 #include"Instruccion_JGTZ.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_JGTZ
+ * @param registros Conjunto de registros
+ * @param etiquetas Conjunto de etiquetas
+ * @return Crea el objeto Instruccion_JGTZ
+*/
+
+Instruccion_JGTZ::Instruccion_JGTZ(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+  instruccion_ = "JGTZ";
+  etiquetas_ = etiquetas;
+}
+
+/**
  * @brief Método para ejecutar la instrucción JGTZ
  * @details Salta a la etiqueta si el registro RO es mayor que 0
  * @param operando Etiqueta a la que saltar

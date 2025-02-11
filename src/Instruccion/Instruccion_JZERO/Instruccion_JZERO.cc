@@ -16,6 +16,18 @@
 #include"Instruccion_JZERO.h"
 
 /**
+ * @brief Constructor de la clase Instruccion_JZERO
+ * @param registros Conjunto de registros
+ * @param etiquetas Mapa de etiquetas
+ * @return Crea el objeto Instruccion_JZERO
+ */
+
+Instruccion_JZERO::Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+  instruccion_ = "JZERO";
+  etiquetas_ = etiquetas;
+}
+
+/**
  * @brief Método para ejecutar la instrucción JZERO
  * @details Salta a la etiqueta si el registro RO es igual a 0
  * @param operando Etiqueta a la que saltar
