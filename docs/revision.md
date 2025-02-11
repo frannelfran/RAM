@@ -1,0 +1,3 @@
+- new instrucción para tener directamente en la memoria instrucciones.
+- cambiar lo de direccionamiento indirecto en el READ y WRITE
+- un fichero por cada instrucción

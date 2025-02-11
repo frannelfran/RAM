@@ -29,10 +29,12 @@ void Escritura::Escribir(int dato) {
  * @param file Fichero de salida
 */
 
-void Escritura::VolcarEnFichero(ofstream& file) {
+void Escritura::VolcarEnFichero() {
+  // Abro el fichero de salida
+  ofstream file(this->fichero_salida);
   // Recorro la cinta de escritura
   for (int digito : cinta_escritura) {
-    file << digito;
+    file << digito << endl;
   }
 }
 

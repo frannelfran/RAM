@@ -69,6 +69,7 @@ void UnidadDeControl::EjecutarPrograma() {
     cout << *this << endl;
     if (instruccion.first == "HALT") {
       cout << "Programa finalizado con exito" << endl;
+      cinta_escritura_->VolcarEnFichero();
       break;
     } 
     int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);

@@ -27,7 +27,7 @@ class Escritura {
  public:
   Escritura(const string& fichero_salida) : fichero_salida(fichero_salida) {}
 
-  void VolcarEnFichero(ofstream& file);
+  void VolcarEnFichero();
   void Escribir(int dato);
   friend ostream& operator<<(ostream& os, const Escritura& escritura);
 
