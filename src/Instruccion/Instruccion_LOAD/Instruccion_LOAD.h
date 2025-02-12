@@ -22,9 +22,9 @@
 
 class Instruccion_LOAD : public Instruccion {
   public:
-   Instruccion_LOAD(MemoriaDatos* registros);
+   Instruccion_LOAD(MemoriaDatos* registros, string& operando);
  
-   int ejecutar(const string& operando) override;
+   int ejecutar() override;
  };
 
 #endif

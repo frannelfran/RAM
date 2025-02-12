@@ -28,10 +28,10 @@ using namespace std;
 
 class Instruccion {
  public:
-  Instruccion(MemoriaDatos* registros) : registros_(registros) {}
+  Instruccion(MemoriaDatos* registros, string& operando) : registros_(registros), operando_(operando) {}
 
   // Método para ejecutar la instrucción
-  virtual int ejecutar(const string& operando) = 0;
+  virtual int ejecutar() = 0;
 
   // idea: podemos hacer una clase 
   int Inmediato(const string& operando);
@@ -43,6 +43,7 @@ class Instruccion {
 
  protected:
   string instruccion_;
+  string operando_;
   MemoriaDatos* registros_; // Conjunto de registros
 };
 

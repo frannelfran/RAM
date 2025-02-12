@@ -29,33 +29,6 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
   cinta_lectura_ = cinta_lectura;
   cinta_escritura_ = cinta_escritura;
   PC_ = 0;
-  instrucciones_.push_back(new Instruccion_LOAD(registros));
-  instrucciones_.push_back(new Instruccion_STORE(registros));
-  instrucciones_.push_back(new Instruccion_ADD(registros));
-  instrucciones_.push_back(new Instruccion_SUB(registros));
-  instrucciones_.push_back(new Instruccion_MUL(registros));
-  instrucciones_.push_back(new Instruccion_DIV(registros));
-  instrucciones_.push_back(new Instruccion_READ(registros, cinta_lectura_));
-  instrucciones_.push_back(new Instruccion_WRITE(registros, cinta_escritura_));
-  instrucciones_.push_back(new Instruccion_JUMP(registros, programa_->GetEtiquetas()));
-  instrucciones_.push_back(new Instruccion_JGTZ(registros, programa_->GetEtiquetas()));
-  instrucciones_.push_back(new Instruccion_JZERO(registros, programa_->GetEtiquetas()));
-}
-
-/**
- * @brief Método para ejecutar una instrucción
- * @param instruccion Nombre de la instrucción
- * @param operando Operando de la instrucción
-*/
-
-int UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
-  for (long unsigned int i = 0; i < instrucciones_.size(); i++) {
-    if (instrucciones_[i]->GetNombre() == instruccion) {
-      cout << "Ejecutando " << instruccion << " " << operando << endl;
-      return (instrucciones_[i]->ejecutar(operando));
-    }
-  }
-  throw invalid_argument("Instrucción no válida");
 }
 
 /**
@@ -64,17 +37,25 @@ int UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string
 
 void UnidadDeControl::EjecutarPrograma() {
   this->PC_ = 0;
+  vector<Instruccion*> instrucciones_ = programa_->GetVectorInstrucciones(registros_, cinta_lectura_, cinta_escritura_);
+  int pos_aux = -1;
   while (true) {
-    pair<string, string> instruccion = programa_->Leer_instruccion(this->PC_);
-    cout << *this << endl;
-    if (instruccion.first == "HALT") {
-      cout << "Programa finalizado con exito" << endl;
-      cinta_escritura_->VolcarEnFichero();
+    try {
+      pos_aux = instrucciones_[PC_]->ejecutar();
+    } catch (const invalid_argument& e) {
+      throw invalid_argument("En la línea " + to_string(PC_ + 1) + ": " + e.what());
       break;
     }
+
     int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
+
     this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
+    if (pos_aux == -2) {
+      break;
+    }
   }
+  cinta_escritura_->VolcarEnFichero();
+  cout << "Fin del programa" << endl;
 }
 
 /**

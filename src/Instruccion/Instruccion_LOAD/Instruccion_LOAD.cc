@@ -21,18 +21,18 @@
  * @return Crea el objeto Instruccion_LOAD
 */
 
-Instruccion_LOAD::Instruccion_LOAD(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_LOAD::Instruccion_LOAD(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "LOAD";
 }
 
 /**
  * @brief Método para ejecutar la instrucción LOAD
  * @details Guarda el operando en el registro RO
- * @param operando Operando a guardar en RO
  * @return -1
 */
 
-int Instruccion_LOAD::ejecutar(const string& operando) {
+int Instruccion_LOAD::ejecutar() {
+  string operando = operando_;
   if(operando.at(0) == '=') {
     //quito el igual
     registros_->SetDato(0, Inmediato(operando));

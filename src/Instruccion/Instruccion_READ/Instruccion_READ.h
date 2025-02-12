@@ -22,9 +22,9 @@
 
 class Instruccion_READ : public Instruccion {
   public:
-   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura);
+   Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura, string& operando);
  
-   int ejecutar(const string& operando) override;
+   int ejecutar() override;
  
   private:
    Lectura* cinta_lectura_;

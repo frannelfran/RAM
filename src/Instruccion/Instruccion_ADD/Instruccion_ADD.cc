@@ -21,18 +21,18 @@
  * @return Crea el objeto Instruccion_ADD
 */
 
-Instruccion_ADD::Instruccion_ADD(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_ADD::Instruccion_ADD(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "ADD";
 }
 
 /**
  * @brief Método para ejecutar la instrucción ADD
  * @details Suma el registro RO con el operando
- * @param operando Operando a sumar al registro RO
  * @return -1
 */
 
-int Instruccion_ADD::ejecutar(const string& operando) {
+int Instruccion_ADD::ejecutar() {
+  string operando = operando_;
   if(operando.at(0) == '=') {
     registros_->SetDato(0, registros_->GetDato(0) + Inmediato(operando));
     return -1;

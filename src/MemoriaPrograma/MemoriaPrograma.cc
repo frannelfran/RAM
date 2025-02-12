@@ -105,6 +105,66 @@ pair<string, string> MemoriaPrograma::Leer_instruccion(int direccion) {
   return memoria_programa_[direccion];
 }
 
+/**
+ * @brief Función para obtener la dirección de una etiqueta
+ * @param etiqueta Etiqueta a buscar
+ * @return string Dirección de la etiqueta
+ */
+
+string MemoriaPrograma::ObtenerDireccionEtiqueta(const string& etiqueta) {
+  auto it = etiqueta_a_dirección_.find(etiqueta);
+  if (it != etiqueta_a_dirección_.end()) {
+    return to_string(it->second);
+  } else {
+    throw invalid_argument("Etiqueta no encontrada: " + etiqueta);
+  }
+}
+
+/**
+ * @brief Función para obtener el vector de instrucciones
+ * @return vector<Instruccion> Vector de instrucciones
+ * @details Esta función convierte lo que ha leido en objetos instrucción aclarando los operandos
+*/
+
+vector<Instruccion*> MemoriaPrograma::GetVectorInstrucciones(MemoriaDatos* registros, Lectura* cinta_lectura, Escritura* cinta_escritura) {
+  vector<Instruccion*> instrucciones;
+  for (long unsigned int i = 0; i < memoria_programa_.size(); i++) {
+    string instruccion = memoria_programa_[i].first;
+    string operando = memoria_programa_[i].second;
+    if (instruccion == "LOAD") {
+      instrucciones.push_back(new Instruccion_LOAD(registros, operando));
+    } else if (instruccion == "STORE") {
+      instrucciones.push_back(new Instruccion_STORE(registros, operando));
+    } else if (instruccion == "ADD") {
+      instrucciones.push_back(new Instruccion_ADD(registros, operando));
+    } else if (instruccion == "SUB") {
+      instrucciones.push_back(new Instruccion_SUB(registros, operando));
+    } else if (instruccion == "MUL") {
+      instrucciones.push_back(new Instruccion_MUL(registros, operando));
+    } else if (instruccion == "DIV") {
+      instrucciones.push_back(new Instruccion_DIV(registros, operando));
+    } else if (instruccion == "READ") {
+      instrucciones.push_back(new Instruccion_READ(registros, cinta_lectura, operando));
+    } else if (instruccion == "WRITE") {
+      instrucciones.push_back(new Instruccion_WRITE(registros, cinta_escritura, operando));
+    } else if (instruccion == "JUMP") {
+      string op = this->ObtenerDireccionEtiqueta(operando);
+      instrucciones.push_back(new Instruccion_JUMP(registros, op));
+    } else if (instruccion == "JGTZ") {
+      string op = this->ObtenerDireccionEtiqueta(operando);
+      instrucciones.push_back(new Instruccion_JGTZ(registros, op));
+    } else if (instruccion == "JZERO") {
+      string op = this->ObtenerDireccionEtiqueta(operando);
+      instrucciones.push_back(new Instruccion_JZERO(registros, op));
+    } else if (instruccion == "HALT") {
+      instrucciones.push_back(new Instruccion_HALT(registros, operando));
+    } else {
+      throw invalid_argument("Error: Instrucción no reconocida");
+    }
+  }
+  return instrucciones;
+}
+
 
 /**
  * @brief Función para imprimir la memoria de programa

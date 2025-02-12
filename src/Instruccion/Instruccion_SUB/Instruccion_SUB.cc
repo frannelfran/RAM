@@ -21,18 +21,18 @@
  * @return Crea el objeto Instruccion_SUB
  */
 
-Instruccion_SUB::Instruccion_SUB(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_SUB::Instruccion_SUB(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "SUB";
 }
 
 /**
  * @brief Método para ejecutar la instrucción SUB
  * @details Resta el operando al registro RO
- * @param operando Operando a restar al registro RO
  * @return -1 
 */
 
-int Instruccion_SUB::ejecutar(const string& operando) {
+int Instruccion_SUB::ejecutar() {
+  string operando = operando_;
   if(operando.at(0) == '=') {
     registros_->SetDato(0, registros_->GetDato(0) - Inmediato(operando));
     return -1;

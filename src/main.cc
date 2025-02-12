@@ -26,20 +26,20 @@
 
 using namespace std;
 
-void test(UnidadDeControl &UDC) {
-  UDC.EjecutarInstruccion("LOAD", "=5");
-  cout << UDC << endl;
-  UDC.EjecutarInstruccion("STORE", "10");
-  //.EjecutarInstruccion("STORE", "=11");
-  cout << UDC << endl;
-  UDC.EjecutarInstruccion("STORE", "5");
-  UDC.EjecutarInstruccion("LOAD", "=20");
-  UDC.EjecutarInstruccion("STORE", "*5");
-
-  
-  cout << UDC << endl;
-
-}
+// void test(UnidadDeControl &UDC) {
+//   UDC.EjecutarInstruccion("LOAD", "=5");
+//   cout << UDC << endl;
+//   UDC.EjecutarInstruccion("STORE", "10");
+//   //.EjecutarInstruccion("STORE", "=11");
+//   cout << UDC << endl;
+//   UDC.EjecutarInstruccion("STORE", "5");
+//   UDC.EjecutarInstruccion("LOAD", "=20");
+//   UDC.EjecutarInstruccion("STORE", "*5");
+// 
+//   
+//   cout << UDC << endl;
+// 
+// }
 
 int main(int argc, char *argv[]) {
   //Compruebo si se han introducido los argumentos necesarios
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     // Inicializo la unidad de control
     UDC.Inicializar(registros, programa, cinta_lectura, cinta_escritura);
   } catch (const exception& e) {
-    cerr << e.what() << endl;
+    cerr << "Error inicializando el programa: " << e.what() << endl;
     return 1;
   }
 
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     //Ejecuto el programa
     UDC.EjecutarPrograma();
   } catch (const exception& e) {
-    cerr << e.what() << endl;
+    cerr << "Error en la ejecución del programa: " << e.what() << endl;
     return 1;
   }
   return 0;

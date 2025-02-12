@@ -27,7 +27,6 @@
 #include "../Instruccion/Instruccion_STORE/Instruccion_STORE.h"
 #include "../Instruccion/Instruccion_SUB/Instruccion_SUB.h"
 #include "../Instruccion/Instruccion_WRITE/Instruccion_WRITE.h"
-
 #include "../MemoriaPrograma/MemoriaPrograma.h"
 
 using namespace std;
@@ -41,7 +40,7 @@ class UnidadDeControl {
   void Inicializar(MemoriaDatos* registros, MemoriaPrograma* programa, Lectura* cinta_lectura, Escritura* cinta_escritura); // Inicializa la unidad de control
 
   // Método para ejecutar la instrucción
-  int EjecutarInstruccion(const string& instruccion, const string& operando);
+  //int EjecutarInstruccion(const string& instruccion, const string& operando);
   void EjecutarPrograma(); // Ejecuta el programa
 
   friend ostream& operator<<(ostream& os, const UnidadDeControl& UDC);

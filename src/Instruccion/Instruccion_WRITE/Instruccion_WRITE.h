@@ -21,13 +21,11 @@
 */
 
 class Instruccion_WRITE : public Instruccion {
-  public:
-   Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura);
- 
-   int ejecutar(const string& operando) override;
- 
-  private:
-   Escritura* cinta_escritura_;
- };
+ public:
+  Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura, string& operando);
+  int ejecutar() override;
+ private:
+  Escritura* cinta_escritura_;
+};
 
 #endif

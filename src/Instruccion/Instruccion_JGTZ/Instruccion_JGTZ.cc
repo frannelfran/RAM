@@ -22,25 +22,20 @@
  * @return Crea el objeto Instruccion_JGTZ
 */
 
-Instruccion_JGTZ::Instruccion_JGTZ(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+Instruccion_JGTZ::Instruccion_JGTZ(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "JGTZ";
-  etiquetas_ = etiquetas;
 }
 
 /**
  * @brief Método para ejecutar la instrucción JGTZ
  * @details Salta a la etiqueta si el registro RO es mayor que 0
- * @param operando Etiqueta a la que saltar
  * @return -1 
 */
 
-int Instruccion_JGTZ::ejecutar(const string& operando) {
+int Instruccion_JGTZ::ejecutar() {
+  int pos = std::stoi(operando_);
   if (registros_->GetDato(0) > 0) {
-    auto posicion = etiquetas_.find(operando);
-    if (posicion == etiquetas_.end()) {
-      throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
-    }
-    return posicion->second;
+    return pos;
   }
   return -1;
 }
