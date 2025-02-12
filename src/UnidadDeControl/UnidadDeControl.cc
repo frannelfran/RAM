@@ -71,7 +71,7 @@ void UnidadDeControl::EjecutarPrograma() {
       cout << "Programa finalizado con exito" << endl;
       cinta_escritura_->VolcarEnFichero();
       break;
-    } 
+    }
     int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
     this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
   }

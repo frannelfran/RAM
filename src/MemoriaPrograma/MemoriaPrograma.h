@@ -22,20 +22,25 @@
 #include <sstream>    // Para std::istringstream
 #include <algorithm>  // Para std::transform
 #include <cctype>     // Para ::toupper
+#include <regex>
+#include <utility>
 
 using namespace std;
 
-vector<string> fichero_to_line(string fichero);
-
 class MemoriaPrograma {
  public:
-  MemoriaPrograma(vector<string> lineas_de_codigo);
+  MemoriaPrograma(const string& file);
   pair<string, string> Leer_instruccion(int direccion);
-  map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
+  map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; }
+
+  // Para manejar las lineas del fichero
+  void InsertarEtiqueta(string& etiqueta, int direccion);
+  void InsertarInstruccion(string& Instruccion);
+
   friend ostream& operator<<(ostream& os, const MemoriaPrograma& memoria);
 
  private:
-  vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
+  vector<pair<string, string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
   map<string,int> etiqueta_a_dirección_; // relaciona las etiquetas con la dirección de la instrucción
 };
 
