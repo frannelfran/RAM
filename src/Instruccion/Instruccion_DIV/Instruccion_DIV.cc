@@ -21,18 +21,18 @@
  * @return Crea el objeto Instruccion_DIV
 */
 
-Instruccion_DIV::Instruccion_DIV(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_DIV::Instruccion_DIV(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "DIV";
 }
 
 /**
  * @brief Método para ejecutar la instrucción DIV
  * @details Divide el registro RO por el operando
- * @param operando Operando a dividir al registro RO
  * @return -1 
 */
 
-int Instruccion_DIV::ejecutar(const string& operando) {
+int Instruccion_DIV::ejecutar() {
+  string operando = operando_;
   if(operando.at(0) == '=') {
     registros_->SetDato(0, registros_->GetDato(0) / Inmediato(operando));
     return -1;

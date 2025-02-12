@@ -7,22 +7,22 @@
 // Autor: javier Gómez Alayón
 // Correo: alu0101562445@ull.edu.es
 // Fecha: 02/11/25
-// Archivo Instruccion_JGTZ.h : Declaración de la clase Instruccion_JGTZ
-//        En este fichero se declara la clase Instruccion_JGTZ
+// Archivo Instruccion_HALT.h : Declaración de la clase Instruccion_HALT
+//        En este fichero se declara la clase Instruccion_HALT
 //
 // Historial de revisiones
 //        02/11/25 - Creación (primera versión) del código
-#ifndef C_Instruccion_JGTZ_H
-#define C_Instruccion_JGTZ_H
+#ifndef C_Instruccion_HALT_H
+#define C_Instruccion_HALT_H
 #include "../Instruccion.h"
 
 /**
- * @class Clase para representar la instrucción JGTZ
+ * @class Clase para representar la instrucción WRITE
 */
 
-class Instruccion_JGTZ : public Instruccion {
+class Instruccion_HALT : public Instruccion {
  public:
-  Instruccion_JGTZ(MemoriaDatos* registros, string& operando);
+  Instruccion_HALT(MemoriaDatos* registros, string& operando);
   int ejecutar() override;
 };
 

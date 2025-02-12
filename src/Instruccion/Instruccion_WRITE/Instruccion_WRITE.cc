@@ -22,7 +22,7 @@
  * @return Crea el objeto Instruccion_WRITE
  */
 
-Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura) : Instruccion(registros) {
+Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_escritura, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "WRITE";
   cinta_escritura_ = cinta_escritura;
 }
@@ -30,12 +30,11 @@ Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_e
 /**
  * @brief Método para ejecutar la instrucción WRITE
  * @details Escribe en la cinta de escritura el registro que se le pasa
- * @param operando Registro que se debe escribir en la cinta de escritura
  * @return -1 
 */
 
-int Instruccion_WRITE::ejecutar(const string& operando) {
-  string aux = operando.substr(1);
+int Instruccion_WRITE::ejecutar() {
+  string operando = operando_;
   //if (operando == "0" || stoi(aux) == this->DireccionamientoDirecto(aux)) {
   //  throw invalid_argument("Con WRITE no se puede poner el operando 0.");
   //}
@@ -43,7 +42,6 @@ int Instruccion_WRITE::ejecutar(const string& operando) {
     cinta_escritura_->Escribir(this->Inmediato(operando));
     return -1;
   } else if (operando.at(0) == '*') { // si es un direccionamiento indirecto
-    cout << this->DireccionamientoIndirecto(operando) << endl;
     cinta_escritura_->Escribir(this->DireccionamientoIndirecto(operando));
     return -1;
   } else { // si es un direccionamiento directo

@@ -22,22 +22,16 @@
  * @return Crea el objeto Instruccion_JUMP
 */
 
-Instruccion_JUMP::Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+Instruccion_JUMP::Instruccion_JUMP(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "JUMP";
-  etiquetas_ = etiquetas;
 }
 
 /**
  * @brief Método para ejecutar la instrucción JUMP
  * @details Salta a la etiqueta
- * @param operando Etiqueta a la que saltar
  * @return -1 
 */
 
-int Instruccion_JUMP::ejecutar(const string& operando) {
-  auto posicion = etiquetas_.find(operando);
-  if (posicion == etiquetas_.end()) {
-    throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
-  }
-  return posicion->second;
+int Instruccion_JUMP::ejecutar() {
+  return stoi(operando_);
 }

@@ -20,18 +20,18 @@
  * @param registros Conjunto de registros
  * @return Crea el objeto Instruccion_MUL
 */
-Instruccion_MUL::Instruccion_MUL(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_MUL::Instruccion_MUL(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "MUL";
 }
 
 /**
  * @brief Método para ejecutar la instrucción MUL
  * @details Multiplica el registro RO por el operando
- * @param operando Operando a multiplicar al registro RO
  * @return -1 
 */
 
-int Instruccion_MUL::ejecutar(const string& operando) {
+int Instruccion_MUL::ejecutar() {
+  string operando = operando_;
   if(operando.at(0) == '=') {
     registros_->SetDato(0, registros_->GetDato(0) * Inmediato(operando));
     return -1;

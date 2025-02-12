@@ -21,13 +21,9 @@
 */
 
 class Instruccion_JZERO : public Instruccion {
-  public:
-   Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas);
- 
-   int ejecutar(const string& operando) override;
- 
-  private:
-   map<string, int> etiquetas_;
- };
+ public:
+  Instruccion_JZERO(MemoriaDatos* registros, string& operando);
+  int ejecutar() override;
+};
 
 #endif

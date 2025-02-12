@@ -21,13 +21,9 @@
 */
 
 class Instruccion_JUMP : public Instruccion {
-  public:
-   Instruccion_JUMP(MemoriaDatos* registros, map<string, int> etiquetas);
-   
-   int ejecutar(const string& operando) override;
- 
-  private:
-   map<string, int> etiquetas_;
- };
+ public:
+  Instruccion_JUMP(MemoriaDatos* registros, string& operando);
+  int ejecutar() override;
+};
 
 #endif

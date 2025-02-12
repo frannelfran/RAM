@@ -21,10 +21,9 @@
 */
 
 class Instruccion_DIV : public Instruccion {
-  public:
-   Instruccion_DIV(MemoriaDatos* registros);
- 
-   int ejecutar(const string& operando) override;
- };
+ public:
+  Instruccion_DIV(MemoriaDatos* registros, string& operando);
+  int ejecutar() override;
+};
 
 #endif

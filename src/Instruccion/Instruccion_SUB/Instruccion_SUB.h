@@ -21,10 +21,9 @@
 */
 
 class Instruccion_SUB : public Instruccion {
-  public:
-   Instruccion_SUB(MemoriaDatos* registros);
- 
-   int ejecutar(const string& operando) override;
- };
+ public:
+  Instruccion_SUB(MemoriaDatos* registros, string& operando);
+  int ejecutar() override;
+};
 
 #endif

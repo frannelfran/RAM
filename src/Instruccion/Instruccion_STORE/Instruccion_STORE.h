@@ -21,10 +21,9 @@
 */
 
 class Instruccion_STORE : public Instruccion {
-  public:
-   Instruccion_STORE(MemoriaDatos* registros);
- 
-   int ejecutar(const string& operando) override;
- };
+ public:
+  Instruccion_STORE(MemoriaDatos* registros, string& operando);
+  int ejecutar() override;
+};
 
 #endif

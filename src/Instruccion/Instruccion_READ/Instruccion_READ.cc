@@ -21,18 +21,18 @@
  * @param cinta_lectura Cinta de lectura
  */
 
-Instruccion_READ::Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura) : Instruccion(registros) {
+Instruccion_READ::Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectura, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "READ";
   cinta_lectura_ = cinta_lectura;
 }
 /**
  * @brief Método para ejecutar la instrucción READ
  * @details Lee de la cinta de lectura y guarda en el registro que se le pasa
- * @param operando Registro donde se debe guardar lo leído en la cinta de lectura
  * @return -1 
 */
 
-int Instruccion_READ::ejecutar(const string& operando) {
+int Instruccion_READ::ejecutar() {
+  string operando = operando_;
   //if (operando == "0" || stoi(operando) == this->DireccionamientoDirecto(operando)) {
   //  throw invalid_argument("Con READ no se puede poner el operando 0.");
   //}

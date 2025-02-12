@@ -22,9 +22,9 @@
 
 class Instruccion_MUL : public Instruccion {
   public:
-   Instruccion_MUL(MemoriaDatos* registros);
+   Instruccion_MUL(MemoriaDatos* registros, string& operando);
  
-   int ejecutar(const string& operando) override;
+   int ejecutar() override;
  };
 
 #endif

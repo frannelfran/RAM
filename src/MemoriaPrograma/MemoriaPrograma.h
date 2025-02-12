@@ -22,6 +22,22 @@
 #include <sstream>    // Para std::istringstream
 #include <algorithm>  // Para std::transform
 #include <cctype>     // Para ::toupper
+#include "../Instruccion/Instruccion.h"
+#include "../MemoriaDatos/MemoriaDatos.h"
+#include "../Instruccion/Instruccion_ADD/Instruccion_ADD.h"
+#include "../Instruccion/Instruccion_DIV/Instruccion_DIV.h"
+#include "../Instruccion/Instruccion_JGTZ/Instruccion_JGTZ.h"
+#include "../Instruccion/Instruccion_JUMP/Instruccion_JUMP.h"
+#include "../Instruccion/Instruccion_JZERO/Instruccion_JZERO.h"
+#include "../Instruccion/Instruccion_LOAD/Instruccion_LOAD.h"
+#include "../Instruccion/Instruccion_MUL/Instruccion_MUL.h"
+#include "../Instruccion/Instruccion_READ/Instruccion_READ.h"
+#include "../Instruccion/Instruccion_STORE/Instruccion_STORE.h"
+#include "../Instruccion/Instruccion_SUB/Instruccion_SUB.h"
+#include "../Instruccion/Instruccion_WRITE/Instruccion_WRITE.h"
+#include "../Instruccion/Instruccion_HALT/Instruccion_HALT.h"
+#include "../Escritura/Escritura.h"
+#include "../Lectura/Lectura.h"
 
 using namespace std;
 
@@ -32,6 +48,9 @@ class MemoriaPrograma {
   MemoriaPrograma(vector<string> lineas_de_codigo);
   pair<string, string> Leer_instruccion(int direccion);
   map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
+  vector<Instruccion*> GetVectorInstrucciones(MemoriaDatos *registros, Lectura *cinta_lectura, Escritura *cinta_escritura);
+  void CrearInstruccion(unsigned long i, std::vector<Instruccion *> &instrucciones, MemoriaDatos *registros, Lectura *cinta_lectura, Escritura *cinta_escritura);
+  string ObtenerDireccionEtiqueta(const string& etiqueta);
   friend ostream& operator<<(ostream& os, const MemoriaPrograma& memoria);
 
  private:

@@ -22,20 +22,20 @@
 
 using namespace std;
 
-void test(UnidadDeControl &UDC) {
-  UDC.EjecutarInstruccion("LOAD", "=5");
-  cout << UDC << endl;
-  UDC.EjecutarInstruccion("STORE", "10");
-  //.EjecutarInstruccion("STORE", "=11");
-  cout << UDC << endl;
-  UDC.EjecutarInstruccion("STORE", "5");
-  UDC.EjecutarInstruccion("LOAD", "=20");
-  UDC.EjecutarInstruccion("STORE", "*5");
-
-  
-  cout << UDC << endl;
-
-}
+// void test(UnidadDeControl &UDC) {
+//   UDC.EjecutarInstruccion("LOAD", "=5");
+//   cout << UDC << endl;
+//   UDC.EjecutarInstruccion("STORE", "10");
+//   //.EjecutarInstruccion("STORE", "=11");
+//   cout << UDC << endl;
+//   UDC.EjecutarInstruccion("STORE", "5");
+//   UDC.EjecutarInstruccion("LOAD", "=20");
+//   UDC.EjecutarInstruccion("STORE", "*5");
+// 
+//   
+//   cout << UDC << endl;
+// 
+// }
 
 int main(int argc, char *argv[]) {
   //Compruebo si se han introducido los argumentos necesarios

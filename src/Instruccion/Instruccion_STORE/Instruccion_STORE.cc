@@ -21,18 +21,18 @@
  * @return Crea el objeto Instruccion_STORE
  */
 
-Instruccion_STORE::Instruccion_STORE(MemoriaDatos* registros) : Instruccion(registros) {
+Instruccion_STORE::Instruccion_STORE(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "STORE";
 }
 
 /**
  * @brief Método para ejecutar la instrucción STORE
  * @details Guarda el dato del registro RO en el operando
- * @param operando Operando donde guardar el dato del registro RO
  * @return -1
 */
 
-int Instruccion_STORE::ejecutar(const string& operando) {
+int Instruccion_STORE::ejecutar() {
+  string operando = operando_;
   if (operando.at(0) == '=') {
     throw invalid_argument("Con STORE no se puede poner el operando =.");
   }

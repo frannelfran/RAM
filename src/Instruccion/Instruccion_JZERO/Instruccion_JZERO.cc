@@ -18,29 +18,24 @@
 /**
  * @brief Constructor de la clase Instruccion_JZERO
  * @param registros Conjunto de registros
- * @param etiquetas Mapa de etiquetas
+ * @param operando Una string con el número de la instrucción a la que tiene que saltar
  * @return Crea el objeto Instruccion_JZERO
  */
 
-Instruccion_JZERO::Instruccion_JZERO(MemoriaDatos* registros, map<string, int> etiquetas) : Instruccion(registros) {
+Instruccion_JZERO::Instruccion_JZERO(MemoriaDatos* registros, string& operando) : Instruccion(registros, operando) {
   instruccion_ = "JZERO";
-  etiquetas_ = etiquetas;
 }
 
 /**
  * @brief Método para ejecutar la instrucción JZERO
  * @details Salta a la etiqueta si el registro RO es igual a 0
- * @param operando Etiqueta a la que saltar
+
  * @return -1
 */ 
 
-int Instruccion_JZERO::ejecutar(const string& operando) {
+int Instruccion_JZERO::ejecutar() {
   if (registros_->GetDato(0) == 0) {
-    auto posicion = etiquetas_.find(operando);
-    if (posicion == etiquetas_.end()) {
-      throw invalid_argument("Error: No se ha encontrado la etiqueta: " + operando);
-    }
-    return posicion->second;
+    return std::stoi(operando_);
   }
   return -1;
 }
