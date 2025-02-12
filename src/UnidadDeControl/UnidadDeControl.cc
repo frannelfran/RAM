@@ -46,8 +46,12 @@ void UnidadDeControl::EjecutarPrograma() {
       throw invalid_argument("En la línea " + to_string(PC_ + 1) + ": " + e.what());
       break;
     }
-
-    this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
+    // Si la instrucción se ha ejecutado correctamente, se incrementa el contador de programa
+    if (pos_aux == -1) {
+      PC_++;
+    } else {
+      PC_ = pos_aux;
+    }
     if (pos_aux == -2) {
       break;
     }

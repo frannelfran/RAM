@@ -28,7 +28,7 @@ using namespace std;
 
 class Instruccion {
  public:
-  Instruccion(MemoriaDatos* registros, string& operando) : registros_(registros), operando_(operando) {}
+  Instruccion(MemoriaDatos* registros, string& operando) : operando_(operando), registros_(registros) {}
 
   // Método para ejecutar la instrucción
   virtual int ejecutar() = 0;
