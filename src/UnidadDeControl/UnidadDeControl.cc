@@ -54,8 +54,14 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
 void UnidadDeControl::EjecutarPrograma() {
   this->PC_ = 0;
   vector<Instruccion*> instrucciones_ = programa_->GetVectorInstrucciones(registros_, cinta_lectura_, cinta_escritura_);
+  int pos_aux = -1;
   while (true) {
-    int pos_aux = instrucciones_[PC_]->ejecutar();
+    try {
+      pos_aux = instrucciones_[PC_]->ejecutar();
+    } catch (const invalid_argument& e) {
+      throw invalid_argument("En la línea " + to_string(PC_ + 1) + ": " + e.what());
+      break;
+    }
     this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
     if (pos_aux == -2) {
       break;
