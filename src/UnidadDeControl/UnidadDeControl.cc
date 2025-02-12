@@ -51,6 +51,7 @@ void UnidadDeControl::EjecutarPrograma() {
     if (pos_aux == -2) {
       break;
     }
+    cout << *this;
   }
   cinta_escritura_->VolcarEnFichero();
   cout << "Fin del programa" << endl;
