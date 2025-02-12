@@ -13,7 +13,6 @@ CXX = g++						# The C++ compiler command
 CXXFLAGS = -std=c++17 -O0 -g -Wall	  # The C++ compiler options (preserve debug symbols and No optimization)
 LDFLAGS =						# The linker options (if any)
 OBJS = *.cc
-CC = src/funciones_main/funciones_main.cc src/main.cc  src/Instruccion/Instruccion.cc src/Lectura/Lectura.cc src/Escritura/Escritura.cc src/UnidadDeControl/UnidadDeControl.cc src/MemoriaPrograma/MemoriaPrograma.cc src/MemoriaDatos/MemoriaDatos.cc src/Instruccion/*.cc
 PROGRAM = Máquina_RAM
 PARAM = 
 

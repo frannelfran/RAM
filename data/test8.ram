@@ -1,0 +1,22 @@
+# Esto está extraido de la hoja de problemas de la asignatura
+# Diseñe un programa con el repertorio de instrucciones de una máquina RAM que permita calcular 
+# el valor de n^n. El valor de n vendrá dado en la cinta de entrada.
+
+        READ 1
+        LOAD 1
+        STORE 2
+        STORE 3
+while:  LOAD 3
+        SUB =1
+        STORE 3
+        JZERO fin
+        LOAD 2
+        MUL 1
+        STORE 2
+        JUMP while
+fin:    WRITE 2
+        HALT
+
+
+
+
