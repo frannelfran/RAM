@@ -16,84 +16,79 @@
 #include"MemoriaPrograma.h"
 
 /**
-  * @brief Función utilitaria para trim de cadenas (para quitarles los espacios en blanco)
-  * @param string s
-  * @return string 
-  */
-string trim(const string& s) {
-  auto start = s.begin();
-  while (start != s.end() && isspace(*start)) ++start;
-  
-  auto end = s.end();
-  do { --end; } while (distance(start, end) > 0 && isspace(*end));
-  
-  return string(start, end + 1);
-}
+ * @brief Función para insertar una etiqueta en la memoria del programa
+ * @param etiqueta Etiqueta a insertar
+ * @param direccion Dirección de la instrucción
+*/
 
-/** ficher_to_line()
-  * @brief Lee un fichero y lo convierte en un vector de strings
-  * @param string fichero
-  * @return vector de strings
-  */
-vector<string> fichero_to_line(string fichero) {
-  ifstream file(fichero);
-  string line;
-  vector<string> lineas;
-  for (string line; getline(file, line);) { // mientras haya lineas en el fichero
-    line = trim(line);
-      
-    if (!line.empty() && line[0] != '#') {
-      lineas.emplace_back(move(line));
-    }
+void MemoriaPrograma::InsertarEtiqueta(string& etiqueta, int direccion) {
+  regex patron(":");
+  etiqueta = regex_replace(etiqueta, patron, " ");
+  // Separo la etiqueta de la instruccion
+  string instruccion = etiqueta.substr(etiqueta.find(' ') + 1);
+  // Inserto la etiqueta
+  etiqueta_a_dirección_.insert(make_pair(etiqueta.substr(0, etiqueta.find(' ')), direccion));
+  // Inserto la instrucción
+  if (instruccion == "HALT") {
+    InsertarInstruccion(instruccion);
+    return;
   }
-  return lineas;
+  InsertarInstruccion(instruccion);
 }
 
+/**
+ * @brief Función para insertar una instruccion en la memoria del programa
+ * @param instruccion Instrucción a insertar
+ * @param direccion Dirección de la instrucción
+*/
+
+void MemoriaPrograma::InsertarInstruccion(string& instruccion) {
+  if (instruccion.find('=') != string::npos || instruccion.find('*') != string::npos) {
+    regex patron("([=|*])");
+    instruccion = regex_replace(instruccion, patron, " $1");
+  }
+  else if (instruccion.find("JUMP") != string::npos || instruccion.find("JZERO") != string::npos || instruccion.find("JGTZ") != string::npos) {
+    regex patron("(JUMP|JZERO|JGTZ)");
+    instruccion = regex_replace(instruccion, patron, "$1 ");
+  }
+  else if (instruccion == "HALT") {
+    memoria_programa_.push_back(make_pair(instruccion, ""));
+    return;
+  }
+  else {
+    regex patron("([0-9]+)");
+    instruccion = regex_replace(instruccion, patron, " $1");
+  }
+  memoria_programa_.push_back(make_pair(instruccion.substr(0, instruccion.find(' ')), instruccion.substr(instruccion.find(' ') + 1)));
+}
 
 /** MemoriaPrograma::MemoriaPrograma()
   * @brief Crea el objeto de la clase MemoriaPrograma.
-  * @param 
+  * @param nombre_fichero Nombre del fichero
   * @return objeto de la clase MemoriaPrograma
-  */
-MemoriaPrograma::MemoriaPrograma(vector<string> lineas_de_codigo) {
-  memoria_programa_ = vector<pair<string,string>>();
-  string instruccion = "";
-  string operando = "";
-  vector<string> instruccion_auxiliar;
-  // hago un bucle para recorrer todas las lineas de codigo
-  for (long unsigned int i = 0; i < lineas_de_codigo.size(); i++) {
-    instruccion = "";
-    operando = "";
-    instruccion_auxiliar = vector<string>();
-    // Utilizo istringstream para leer la línea como si fuese un fichero
-    istringstream iss(lineas_de_codigo[i]);
-    // Recopilo todas las palabras en un vector
-    while (iss >> instruccion) { 
-      std::transform(instruccion.begin(), instruccion.end(), instruccion.begin(), ::toupper); // paso todas las instrucciones a mayúsculas
-      instruccion_auxiliar.push_back(instruccion); 
+*/
+
+MemoriaPrograma::MemoriaPrograma(const string& nombre_fichero) {
+  ifstream file(nombre_fichero);
+  int num_linea = 0;
+  string linea;
+  while (getline(file, linea)) {
+    if (linea.find('#') != string::npos || linea.empty() || regex_match(linea, regex("^\\s+$"))) {
+      continue;
     }
-    // miro si hay una etiqueta
-    if (instruccion_auxiliar.size() == 2) {
-      if (instruccion_auxiliar[1] == "HALT") {
-        memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], "-1"));
-        // le quito los dos puntos a la etiqueta
-        string etiqueta = instruccion_auxiliar[0];
-        etiqueta = etiqueta.substr(0, etiqueta.size() - 1);
-        etiqueta_a_dirección_[etiqueta] = i;
-      } else {
-        memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], instruccion_auxiliar[1]));
-      }
-    } else if (instruccion_auxiliar.size() == 3) { // esto significa que hay una etiqueta antes de las instrucciones
-      memoria_programa_.push_back(make_pair(instruccion_auxiliar[1], instruccion_auxiliar[2]));
-      // le quito los dos puntos a la etiqueta
-      string etiqueta = instruccion_auxiliar[0];
-      etiqueta = etiqueta.substr(0, etiqueta.size() - 1);
-      etiqueta_a_dirección_[etiqueta] = i;
-    } else if (instruccion_auxiliar.size() == 1 || instruccion_auxiliar[0] == "HALT") { // esto significa que hay una instrucción sin operando
-       memoria_programa_.push_back(make_pair(instruccion_auxiliar[0], "-1")); // le pongo un -1 porque no debería de usarse
-    } else {
-      throw invalid_argument("Error: La instrucción no tiene el formato correcto");
+    // Eliminar espacios en blanco y saltos de linea
+    linea.erase(remove_if(linea.begin(), linea.end(), ::isspace), linea.end());
+
+    // Convertir a mayúsculas
+    transform(linea.begin(), linea.end(), linea.begin(), ::toupper);
+
+    if (linea.find(':') != string::npos) {
+      InsertarEtiqueta(linea, num_linea);
     }
+    else {
+      InsertarInstruccion(linea);
+    }
+    num_linea++;
   }
 }
 
@@ -179,11 +174,13 @@ vector<Instruccion*> MemoriaPrograma::GetVectorInstrucciones(MemoriaDatos* regis
 */
 
 ostream& operator<<(ostream& os, const MemoriaPrograma& memoria) {
-    for (long unsigned int i = 0; i < memoria.memoria_programa_.size(); i++) {
-      os << i << " -> " << memoria.memoria_programa_[i].first << " " << memoria.memoria_programa_[i].second << endl;
-    }
-    for (auto etiqueta : memoria.etiqueta_a_dirección_) {
-      os << etiqueta.first << " -> " << etiqueta.second << endl;
-    }
-    return os;
+  os << "---Etiquetas---" << endl;
+  for (auto& etiqueta : memoria.etiqueta_a_dirección_) {
+    os << etiqueta.first << " "<< etiqueta.second << endl;
   }
+  os << "---Instrucciones---" << endl;
+  for (auto& instruccion : memoria.memoria_programa_) {
+    os << instruccion.first << " " << instruccion.second << endl;
+  }
+  return os;
+}

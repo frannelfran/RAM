@@ -32,22 +32,6 @@ void UnidadDeControl::Inicializar(MemoriaDatos* registros, MemoriaPrograma* prog
 }
 
 /**
- * @brief Método para ejecutar una instrucción
- * @param instruccion Nombre de la instrucción
- * @param operando Operando de la instrucción
-*/
-
-// int UnidadDeControl::EjecutarInstruccion(const string& instruccion, const string& operando) {
-//   for (long unsigned int i = 0; i < instrucciones_.size(); i++) {
-//     if (instrucciones_[i]->GetNombre() == instruccion) {
-//       cout << "Ejecutando " << instruccion << " " << operando << endl;
-//       return (instrucciones_[i]->ejecutar(operando));
-//     }
-//   }
-//   throw invalid_argument("Instrucción no válida");
-// }
-
-/**
  * @brief Hace el bucle del programa
 */
 
@@ -62,6 +46,9 @@ void UnidadDeControl::EjecutarPrograma() {
       throw invalid_argument("En la línea " + to_string(PC_ + 1) + ": " + e.what());
       break;
     }
+
+    int pos_aux = this->EjecutarInstruccion(instruccion.first, instruccion.second);
+
     this->PC_ = (pos_aux == -1) ? ++PC_ : pos_aux ;
     if (pos_aux == -2) {
       break;

@@ -38,23 +38,29 @@
 #include "../Instruccion/Instruccion_HALT/Instruccion_HALT.h"
 #include "../Escritura/Escritura.h"
 #include "../Lectura/Lectura.h"
+#include <regex>
+#include <utility>
+
 
 using namespace std;
 
-vector<string> fichero_to_line(string fichero);
-
 class MemoriaPrograma {
  public:
-  MemoriaPrograma(vector<string> lineas_de_codigo);
+  MemoriaPrograma(const string& file);
   pair<string, string> Leer_instruccion(int direccion);
+
   map<string, int> GetEtiquetas() { return etiqueta_a_dirección_; };
   vector<Instruccion*> GetVectorInstrucciones(MemoriaDatos *registros, Lectura *cinta_lectura, Escritura *cinta_escritura);
   void CrearInstruccion(unsigned long i, std::vector<Instruccion *> &instrucciones, MemoriaDatos *registros, Lectura *cinta_lectura, Escritura *cinta_escritura);
   string ObtenerDireccionEtiqueta(const string& etiqueta);
+  // Para manejar las lineas del fichero
+  void InsertarEtiqueta(string& etiqueta, int direccion);
+  void InsertarInstruccion(string& Instruccion);
+  
   friend ostream& operator<<(ostream& os, const MemoriaPrograma& memoria);
 
  private:
-  vector<pair<string,string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
+  vector<pair<string, string>> memoria_programa_; // vector de pares de string que contiene las instrucciones y sus operandos
   map<string,int> etiqueta_a_dirección_; // relaciona las etiquetas con la dirección de la instrucción
 };
 

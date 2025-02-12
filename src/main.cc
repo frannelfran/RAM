@@ -19,6 +19,10 @@
 #include"UnidadDeControl/UnidadDeControl.h"
 #include"MemoriaPrograma/MemoriaPrograma.h"
 #include<iostream>
+#include<fstream>
+#include<map>
+#include<string>
+#include<regex>
 
 using namespace std;
 
@@ -56,17 +60,13 @@ int main(int argc, char *argv[]) {
     // Inicializo la memoria de datos
     MemoriaDatos* registros = new MemoriaDatos();
     // Inicializo la memoria de programa
-    MemoriaPrograma* programa = new MemoriaPrograma(fichero_to_line(datos.ficheroPrograma));
+    MemoriaPrograma* programa = new MemoriaPrograma(datos.ficheroPrograma);
     // Inicializo la unidad de control
     UDC.Inicializar(registros, programa, cinta_lectura, cinta_escritura);
   } catch (const exception& e) {
     cerr << "Error inicializando el programa: " << e.what() << endl;
     return 1;
   }
-
-
-  //Ejecuto el test
-  //test(UDC);
 
   try {
     //Ejecuto el programa
