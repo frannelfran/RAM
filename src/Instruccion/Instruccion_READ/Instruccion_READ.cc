@@ -33,9 +33,9 @@ Instruccion_READ::Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectu
 
 int Instruccion_READ::ejecutar() {
   string operando = operando_;
-  //if (operando == "0" || stoi(operando) == this->DireccionamientoDirecto(operando)) {
-  //  throw invalid_argument("Con READ no se puede poner el operando 0.");
-  //}
+  if (operando == "0" || 0 == this->DireccionamientoDirecto(operando)) {
+    throw invalid_argument("Con READ no se puede poner el operando 0.");
+  }
   if (operando.at(0) == '=') {
     throw invalid_argument("Con READ no se puede poner el operando =.");
   }

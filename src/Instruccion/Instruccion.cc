@@ -32,7 +32,13 @@ int Instruccion::Inmediato(const string& operando) {
 */
 
 int Instruccion::DireccionamientoDirecto(const string& operando) {
-  return registros_->GetDato(stoi(operando));
+  int aux;
+  if (operando.at(0) == '=' || operando.at(0) == '*') {
+    aux = stoi(operando.substr(1));  
+  } else {
+    aux = stoi(operando);
+  }
+  return registros_->GetDato(aux);
 }
 
 /**

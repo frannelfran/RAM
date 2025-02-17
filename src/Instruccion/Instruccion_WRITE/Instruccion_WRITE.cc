@@ -35,9 +35,9 @@ Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_e
 
 int Instruccion_WRITE::ejecutar() {
   string operando = operando_;
-  //if (operando == "0" || stoi(aux) == this->DireccionamientoDirecto(aux)) {
-  //  throw invalid_argument("Con WRITE no se puede poner el operando 0.");
-  //}
+  if (operando == "0" || 0 == this->DireccionamientoDirecto(operando)) {
+    throw invalid_argument("Con WRITE no se puede poner el operando 0.");
+  }
   if (operando.at(0) == '=') { // si es un inmediato
     cinta_escritura_->Escribir(this->Inmediato(operando));
     return -1;
