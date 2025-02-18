@@ -34,12 +34,21 @@ Instruccion_DIV::Instruccion_DIV(MemoriaDatos* registros, string& operando) : In
 int Instruccion_DIV::ejecutar() {
   string operando = operando_;
   if(operando.at(0) == '=') {
+    if (operando.substr(1) == "0") {
+      throw invalid_argument("Error: División por cero");
+    }
     registros_->SetDato(0, registros_->GetDato(0) / Inmediato(operando));
     return -1;
   } else if (operando.at(0) == '*') {
+    if (DireccionamientoIndirecto(operando) == 0) {
+      throw invalid_argument("Error: División por cero");
+    }
     registros_->SetDato(0, registros_->GetDato(0) / DireccionamientoIndirecto(operando));
     return -1;
   } else {
+    if (DireccionamientoDirecto(operando) == 0) {
+      throw invalid_argument("Error: División por cero");
+    }
     registros_->SetDato(0, registros_->GetDato(0) / DireccionamientoDirecto(operando));
     return -1;
   }
