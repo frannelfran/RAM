@@ -33,17 +33,20 @@ Instruccion_READ::Instruccion_READ(MemoriaDatos* registros, Lectura* cinta_lectu
 
 int Instruccion_READ::ejecutar() {
   string operando = operando_;
-  if (operando == "0" || 0 == this->DireccionamientoDirecto(operando)) {
-    throw invalid_argument("Con READ no se puede poner el operando 0.");
-  }
   if (operando.at(0) == '=') {
     throw invalid_argument("Con READ no se puede poner el operando =.");
   }
   if (operando.at(0) == '*') {
+    if (0 == this->DireccionamientoDirecto(operando)) {
+      throw invalid_argument("Con READ no se puede poner el operando 0.");
+    }
     string aux = operando.substr(1);
     registros_->SetDato(DireccionamientoDirecto(aux), cinta_lectura_->leer());
     return -1;
   } else {
+    if (operando == "0") {
+      throw invalid_argument("Con READ no se puede poner el operando 0.");
+    }
     registros_->SetDato(stoi(operando), cinta_lectura_->leer());
     return -1;
   }

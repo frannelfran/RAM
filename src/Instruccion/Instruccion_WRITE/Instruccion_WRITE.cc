@@ -35,16 +35,20 @@ Instruccion_WRITE::Instruccion_WRITE(MemoriaDatos* registros, Escritura* cinta_e
 
 int Instruccion_WRITE::ejecutar() {
   string operando = operando_;
-  if (operando == "0" || 0 == this->DireccionamientoDirecto(operando)) {
-    throw invalid_argument("Con WRITE no se puede poner el operando 0.");
-  }
+  
   if (operando.at(0) == '=') { // si es un inmediato
     cinta_escritura_->Escribir(this->Inmediato(operando));
     return -1;
   } else if (operando.at(0) == '*') { // si es un direccionamiento indirecto
+    if (0 == this->DireccionamientoDirecto(operando)) {
+      throw invalid_argument("Con WRITE no se puede poner el operando 0.");
+    }
     cinta_escritura_->Escribir(this->DireccionamientoIndirecto(operando));
     return -1;
   } else { // si es un direccionamiento directo
+    if (operando == "0") {
+      throw invalid_argument("Con WRITE no se puede poner el operando 0.");
+    }
     cinta_escritura_->Escribir(this->DireccionamientoDirecto(operando));
     return -1;
   }
