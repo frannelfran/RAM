@@ -1,0 +1,11 @@
+# Programa para comprobar el funcionamiento de MOD con el direccionamiento indirecto
+# Este programa coge los tres primeros números de la cinta de entrada y hace un módulo del tercer número con el primero (si el segundo número es un 5)
+
+      	READ 1
+				LOAD 1
+        READ 1
+        READ 5
+				MOD *1
+        STORE 4
+				WRITE 4
+      	HALT

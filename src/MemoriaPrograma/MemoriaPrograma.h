@@ -36,6 +36,7 @@
 #include "../Instruccion/Instruccion_SUB/Instruccion_SUB.h"
 #include "../Instruccion/Instruccion_WRITE/Instruccion_WRITE.h"
 #include "../Instruccion/Instruccion_HALT/Instruccion_HALT.h"
+#include "../Instruccion/Instruccion_MOD/Instruccion_MOD.h"
 #include "../Escritura/Escritura.h"
 #include "../Lectura/Lectura.h"
 #include <regex>

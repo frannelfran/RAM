@@ -47,18 +47,17 @@ void UnidadDeControl::EjecutarPrograma() {
       break;
     }
     // Si la instrucción se ha ejecutado correctamente, se incrementa el contador de programa
-    if (pos_aux == -1) {
+    if (pos_aux == -2) {
+      break;
+    } else if (pos_aux == -1) {
       PC_++;
     } else {
       PC_ = pos_aux;
     }
-    if (pos_aux == -2) {
-      break;
-    }
-    cout << *this;
+    //cout << *this;
   }
   cinta_escritura_->VolcarEnFichero();
-  cout << "Fin del programa" << endl;
+  cout << "Programa finalizado con exito" << endl;
 }
 
 /**

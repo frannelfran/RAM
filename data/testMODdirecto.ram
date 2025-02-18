@@ -1,0 +1,10 @@
+# Programa para comprobar el funcionamiento de MOD con el direccionamiento directo
+# Este programa lee dos números de la cinta de lectura y hace el módulo 
+
+      	READ 1
+				LOAD 1
+        READ 1
+				MOD 1
+				STORE 4
+				WRITE 4
+      	HALT

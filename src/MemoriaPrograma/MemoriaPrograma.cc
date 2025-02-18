@@ -158,6 +158,8 @@ vector<Instruccion*> MemoriaPrograma::GetVectorInstrucciones(MemoriaDatos* regis
       instrucciones.push_back(new Instruccion_JZERO(registros, op));
     } else if (instruccion == "HALT") {
       instrucciones.push_back(new Instruccion_HALT(registros, operando));
+    } else if (instruccion == "MOD") {
+      instrucciones.push_back(new Instruccion_MOD(registros, operando)); 
     } else {
       throw invalid_argument("Error: Instrucción no reconocida");
     }
